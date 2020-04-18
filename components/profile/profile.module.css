@@ -1,0 +1,42 @@
+.container {
+  border: 2px solid var(--secondary-bg-color);
+  border-radius: 10px;
+  padding: 1.5em 1em 0.5em 1em;
+  width: 310px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 100%;
+    flex-direction: row;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    margin-bottom: 1em;
+  }
+  .shortBio, .photo {
+    display: none;
+  }
+
+  .name {
+    display: block;
+    width: 100%;
+    flex: 1;
+  }
+}
+
+.photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+}
+
+.name {
+  font-size: 1.5em;
+}

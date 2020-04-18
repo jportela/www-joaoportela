@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Curriculum Vitae - João Portela</title>
+    <style>
+    *, *:before, *:after {
+      -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    }
+
+    /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+
+    html {
+      font-family: sans-serif; /* 1 */
+      -ms-text-size-adjust: 100%; /* 2 */
+      -webkit-text-size-adjust: 100%; /* 2 */
+    }
+
+    body {
+      margin: 0;
+    }
+
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    main,
+    nav,
+    section,
+    summary {
+      display: block;
+    }
+
+    audio,
+    canvas,
+    progress,
+    video {
+      display: inline-block; /* 1 */
+      vertical-align: baseline; /* 2 */
+    }
+
+    audio:not([controls]) {
+      display: none;
+      height: 0;
+    }
+
+    [hidden],
+    template {
+      display: none;
+    }
+
+    a {
+      background: transparent;
+    }
+
+    a:active,
+    a:hover {
+      outline: 0;
+    }
+
+    abbr[title] {
+      border-bottom: 1px dotted;
+    }
+
+    b,
+    strong {
+      font-weight: bold;
+    }
+
+    dfn {
+      font-style: italic;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin: 0.67em 0;
+    }
+
+    mark {
+      background: #ff0;
+      color: #000;
+    }
+
+    small {
+      font-size: 80%;
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+
+    sup {
+      top: -0.5em;
+    }
+
+    sub {
+      bottom: -0.25em;
+    }
+
+    img {
+      border: 0;
+    }
+
+    svg:not(:root) {
+      overflow: hidden;
+    }
+
+
+    figure {
+      margin: 1em 40px;
+    }
+
+    hr {
+      -moz-box-sizing: content-box;
+      box-sizing: content-box;
+      height: 0;
+    }
+
+    pre {
+      overflow: auto;
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+      font-family: monospace, monospace;
+      font-size: 1em;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      color: inherit; /* 1 */
+      font: inherit; /* 2 */
+      margin: 0; /* 3 */
+    }
+
+    button {
+      overflow: visible;
+    }
+
+    button,
+    select {
+      text-transform: none;
+    }
+
+    button,
+    html input[type="button"], /* 1 */
+    input[type="reset"],
+    input[type="submit"] {
+      -webkit-appearance: button; /* 2 */
+      cursor: pointer; /* 3 */
+    }
+
+    button[disabled],
+    html input[disabled] {
+      cursor: default;
+    }
+
+    button::-moz-focus-inner,
+    input::-moz-focus-inner {
+      border: 0;
+      padding: 0;
+    }
+
+    input {
+      line-height: normal;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      box-sizing: border-box; /* 1 */
+      padding: 0; /* 2 */
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      height: auto;
+    }
+
+    input[type="search"] {
+      -webkit-appearance: textfield; /* 1 */
+      -moz-box-sizing: content-box;
+      -webkit-box-sizing: content-box; /* 2 */
+      box-sizing: content-box;
+    }
+
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+
+    fieldset {
+      border: 1px solid #c0c0c0;
+      margin: 0 2px;
+      padding: 0.35em 0.625em 0.75em;
+    }
+
+    legend {
+      border: 0; /* 1 */
+      padding: 0; /* 2 */
+    }
+
+    textarea {
+      overflow: auto;
+    }
+
+    optgroup {
+      font-weight: bold;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    td,
+    th {
+      padding: 0;
+    }
+
+    /** ======== END OF NORMALIZE **/
+
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      width: 50em;
+      margin: 3em auto;
+    }
+
+    ul {
+        margin: 0 0 1em 0;
+        padding: 0;
+    }
+
+    li {
+        list-style-type: none;
+        padding-left: 0.5em;
+    }
+
+    .contact {
+      text-align: right;
+      font-size: 0.9em;
+      padding: 0;
+      margin: 3em 0;
+    }
+
+    .contact dl {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .contact dd {
+      margin: 0 2em 0 0;
+      height: 16px;
+    }
+
+    h1 {
+        float: right;
+        font-size: 2em;
+        margin: 0;
+    }
+
+    h2 {
+        margin: 0 0 1em 0;
+    }
+
+    h3 {
+        margin: 1.5em 0 0.5em 0;
+        width: 23%;
+        font-size: 1em;
+        text-align: right;
+    }
+
+    .content dt {
+        float: left;
+        width: 23%;
+        text-align: right;
+        padding: 0.2em 0;
+    }
+
+    .content dl {
+        margin: 0 0 1em 0;
+        line-height: 1.5em;
+    }
+
+    .content dd {
+        margin-left: 25%;
+        border-left: 1px solid black;
+        line-height: 1.5em;
+        padding: 0.2em 0.5em;
+    }
+
+    .content dd p {
+        margin: 0;
+        padding-bottom: 1em;
+    }
+
+    .content dl li:before {
+        content: '- ';
+    }
+
+    /* Base 64 Icons */
+    .email-icon, .phone-icon, .web-icon, .github-icon {
+        background-repeat: no-repeat;
+        background-position: left center;
+        width: 16px;
+        height: 16px;
+        font-size: 0; /* hides text intended for accessibility */
+    }
+
+    .email-icon {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAaJJREFUeNrEU7mKAlEQrHmOB56gBiaiiLeIaGJoaupnzF/4FRoroqJ/YiZqYGgimBh5nzvVi4sssrtgsA0Nb2a6qqur32j3+x3vhMKbobfb7cbhcDAcDsffQbqO3W4Hm83W1Pf7vZHJZFAoFGC323G73X6WrBTO5zOm0ykmk4mh6EE2m0W/3wfP1+sVp9PpZfLb5XLBYDAAm7KZOh6PsFqtKJVKaLVasFgs0oESn5MEmqah2+2iXC7LmVhlzi+sXq8X8XgcpidwuVxCstlsJAl2Op0Czufz0pAYYpXpgRRst1v4/X5Eo1F0Oh0Eg0GRSNmBQEBGTKfT4hNriSH2SwEfKKtYLIoXvV4PsVhMcjgcgltKJpNSw9qHAm5B5NLdUCiE8XgsM67Xa9TrdZFbrVbh8Xjouhi+WCwEQ6wQEBwOhwUciUTgdrslK5WKdCYxd2/uHbPZDKlUSlQKAZ0k+2g0QiKRgM/nk30TmMvlZOZH8B1J5vO5jEqsTinL5VKk0cTneHU7H8Sr1epztbVarWGOYPx2A78HzTTHaGr//jd+CDAACGIEig6fBcsAAAAASUVORK5CYII=');
+    }
+
+    .phone-icon {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAF6SURBVDjLjZO/S8NAFMe/l8Q0ASUUXRwK9R9wFDfdunV19Q9wcmg3/wHp4FLo4CA4Ce3o6OLWUZwKpbRLMdDFCKH5dd73SkvQkvTgeLnLe5/3vXfvhJQSu4xutyuDIEC73Rb5fQM7jizLMBwO/+1b+UWv1+soRZdCiGO1PFJzT33r4Hq9DsuyigFRFN02Gg1UKpWNc5qmehJimmYxgE6e5+GsX4VrZQgzHlfiwI7xdP5VroAOzCZMidaFgGVIENH5sPAdZeUAwzAQxzGECrSpVt0Qq0ygErKbAh5DqOC7dxWj0gtKEGSl5QAWiYCX009t18Wj9UxvK8DYBugHz3hN+hiNRnp9+PAINlzpLawBTedqlflkpcC/uUYVKFewrsF4PNZ2MpnozLPZbJOg9AgMYNdx0BJUq9U2CQoBvEYGzOdz2LYN3/fhOA4Wi4UG839hDVTf/4RhuJ9XwLdAy/5Qr1EWAqbT6f1gMGgul0sdmAMjSRK4rvv2F/ALQmi5wbpDa1QAAAAASUVORK5CYII=');
+    }
+
+    .web-icon {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAANPSURBVBgZBcHdT1tlAMDh3zltORT6Ob4mtWDGMpgiU8LcEooJyiaEGbNkCkaNCVfeGP4Dr7zBG42J3hiVZInTeTMvFAPBYRhmGDBjEYaAMhhtVzraUjin5+M95/V5FCklAAAA4wtjfcCHwHmgAfADh8Ci9OSXn/d9+ysAAIAipQRgfGHMD0wC115PDmjxYANloxbDBuGaCHLMZqeEK9wZIdy3vh76/hhAkVIyvjAWAG731D/XeznZT9nUsLDZKitUSY0Dw0MKmyAGWWuepczSfeGIl79789ahCgBMdted6U0191BwbRxVQQiViqjCoIqCpbFvBtk7DNASeomek+1dtuXcAPAVL+2mgE/eOXPF97erk6VCxRMcmyEKVoCyCZvpIw51HS1+gBLd5GJ9B7Nrf566vji54rsw9uKnrzVf6FR8QbKqANnIU26I5ZyPiqmylj7Gqy6itf6DFdkk7xXxF10665Lq8sP1E37gfDKS4J6RIV+t8qyvDQ/Bzr6NaVaInpSUT0yz5ZXAksSExmbeYuCZbhxLPO8H6mr8tewYGfYtg3DNKUp2mGLRI9pg0hg3yLsvULZW0OQRR08OKJRqCAXDOLaI+aWUiiLBtspIkvgDLlN3HZRgiOyWQJURmhsqhI/6KKcdTJZw7G2QEiGE4neFVyjb5USdL0a4+hw7aQ9lZ502nvB0Yx3rd7LcpwNHFZzzVuloaSOTq2Zx/gGeJct+4Yi/HhZ2E6drksyk59H/OKY7mGBk5D10Xadtbw///CK6A++PXqO6KkA2m2V5eZloNm75ukbOHqzub789fDql3p6ZJb4f4sobV/nos6+4deM629v/0daSwDrM89vsLDd/vEnRyNLfd4nibimgfjP8w7RtOb9Mr/1O+CBINBwFIHZxCMO0GB0dJZVKMTQ0xODgIKZVwdduAhCLxlQ/gGM5785t3rtTT6SLfA4A4+5PKNJjYmKC2tpaAHRdR3qwMvXIGP6AmnQ6bSpSSgAGv3glbKTNnyP/xlOv9g4oiUSSgOojl8uxsbGBpmm0trbS1NSEI5zS3qM95ubmHitSSgAA2tvbfY399eOhx5GPmxubq7UqTVFQeKCsllyfu90pus4qKFiW5WYymbyu61f/B/q4pKqmYKY6AAAAAElFTkSuQmCC');
+    }
+
+    .github-icon {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAABBNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iCiAgICAgICAgICAgIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOnRpZmY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vdGlmZi8xLjAvIj4KICAgICAgICAgPHhtcE1NOkRlcml2ZWRGcm9tIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgPHN0UmVmOmluc3RhbmNlSUQ+eG1wLmlpZDpFNTE3OEEyODk5QTAxMUUyOUExNUJDMTA0NkE4OTA0RDwvc3RSZWY6aW5zdGFuY2VJRD4KICAgICAgICAgICAgPHN0UmVmOmRvY3VtZW50SUQ+eG1wLmRpZDpFNTE3OEEyOTk5QTAxMUUyOUExNUJDMTA0NkE4OTA0RDwvc3RSZWY6ZG9jdW1lbnRJRD4KICAgICAgICAgPC94bXBNTTpEZXJpdmVkRnJvbT4KICAgICAgICAgPHhtcE1NOkRvY3VtZW50SUQ+eG1wLmRpZDpFNTE3OEEyQjk5QTAxMUUyOUExNUJDMTA0NkE4OTA0RDwveG1wTU06RG9jdW1lbnRJRD4KICAgICAgICAgPHhtcE1NOkluc3RhbmNlSUQ+eG1wLmlpZDpFNTE3OEEyQTk5QTAxMUUyOUExNUJDMTA0NkE4OTA0RDwveG1wTU06SW5zdGFuY2VJRD4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD5BZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpPC94bXA6Q3JlYXRvclRvb2w+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpu3rz2AAACXUlEQVQ4EW1TTWtTQRS9M/k0rTQxeS+PEPRPiFJoaJbd6s5lxaULV/4E12IVwYq6FNy4EUpRKIQuBD82gqIujIQkzXuLLIxtSGbGc+Y9sQtvMpkz955zZ+6diZLUNCZLGARBR4veFnFdLC/QB+uLqAMr9mkcx73UJV6jsPCg3W6fWcwX9yG8rpQS5xx5Pik5/3zqSaFUuDkYDI69n6xWq1Wxi+We0rrjhdA6fCii0afw8V8mt7anC/mt4XD4m7uLWZgdrXMda80BuDesuA9wHwN/4SCmz8fAIZcaaiVqNDabQeiisOmiRviQPpaDXkSABQ5i+hgjh1yvgTZvld5GgYyJU2rBGfWdYGKN3tC4MYAnkUPA8iyarZWTLlmo88Q484AYxtI879SclgsOuSRRq0Frc4EUcbVa/eFh2n1ew+nhbyTluNjzoGVWJARPqZUkSXydWZL/TilHr3oNtEzQJxPXdK6UK21mqpx3ZYsM0yfFYrGL8mtZqM8S3mSPZCba7Ub16BKCSwwe/28fiJdhGK7Du8Pd/RtR8lprax8hCHO7YL1SeXmLK/royWkSRxwFYQ9NO0RG9swyiba5x/lRkrxvBs17eBy3jLMbeExfkf6yMeanz4ufnMlNrTYb2fpEa10G7+4oGb3jEb1hhz2c4KJTcg2E4Xg8/owAj+7Or63V5sXSN+A6YmKNfXmUTK4yxiZyyDiebKE5z9CUfTH2E44dkMDYvFzmi6xjWOx8B+IrwIxpdtYDzr9ms/3V0tkXOMX3ykrlcDqdsplSq9WgszH+k7ePJpPn9MG4sf0DlCEXbNKFTFQAAAAASUVORK5CYII=');
+    }
+
+    @media print {
+      body {
+          font-size: 11px;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <h1>João Portela</h1>
+    <h2>Curriculum Vitae</h2>
+
+    <aside class="contact">
+      <dl>
+        <dt class="phone-icon" title="Tel">Tel</dt>
+        <dd><a href="tel:+351911525535">(+351) 911 525 535</a></dd>
+
+        <dt class="email-icon" title="Email">Email</dt>
+        <dd><a href="mailto:joao.portela@gmail.com">joao.portela@gmail.com</a></dd>
+
+        <dt class="web-icon" title="Web">Web</dt>
+        <dd><a href="http://www.joaoportela.com/" target="_blank">http://www.joaoportela.com</a></dd>
+
+        <dt class="github-icon" title="GitHub">GitHub</dt>
+        <dd><a href="http://www.github.com/jportela" target="_blank">jportela</a></dd>
+      </dl>
+    </aside>
+
+    <section class="content">
+      <h3>Personal Information</h3>
+      <dl class="personal-information">
+        <dt>Full Name</dt>
+        <dd>João Pedro Pereira da Costa Portela</dd>
+
+        <dt>City of Residence</dt>
+        <dd>Porto, Portugal (Remote)</dd>
+
+        <dt>Nationality</dt>
+        <dd>Portuguese</dd>
+
+        <dt>Mission</dt>
+        <dd>Build well designed software, that make people's lives easier and more enjoyable.</dd>
+        
+        <dt>Technical Skills (Expert)</dt>
+        <dd>JavaScript, TypeScript, NodeJS, React, Redux, Electron, MongoDB</dd>
+        
+        <dt>Technical Skills (Familiar)</dt>
+        <dd>Golang, Rust, C++, HTML, CSS, Java, C, C#, PHP, SQL, Ruby, Python, CFML, Web APIs, Android, Rails, OpenGL, Less, Redis, RabbitMQ</dd>
+      </dl>
+
+      <h3>Work Experience</h3>
+      <dl class="work-experience">
+        <dt>Position</dt>
+        <dd><strong>Senior Engineer</strong></dd>
+
+        <dt>Dates</dt>
+        <dd>July 2015 - now</dd>
+
+        <dt>Main activities</dt>
+        <dd>
+          <li>Part of the team that created <a href="http://www.invisionapp.com/studio/" target="_blank">InVision Studio</a> (Data, SVG and Sketch import, Publishing, Foundational work)</li>
+          <li>Development of the Studio Platform (Plugin ecossystem) and Studio Runtime (frontend architecture framework)</li>
+          <li>Development of Motion (which pivoted into Studio)</li>
+          <li>Implementation of several features, bug fixes and performance improvements for the InVision main application (Slack API integration, Activity feed)</li>
+        </dd>
+
+        <dt>Technologies</dt>
+        <dd>JavaScript, TypeScript, NodeJS, Electron, SVG, Canvas, Golang, Redis, MongoDB, RabbitMQ, Docker, CFML, AWS (S3, SNS, SQS)</dd>
+
+        <dt>Employer</dt>
+        <dd><a href="http://www.invisionapp.com/" target="_blank">InVision</a></dd>
+      </dl>
+      <dl class="work-experience">
+        <dt>Position</dt>
+        <dd><strong>Senior Developer</strong></dd>
+
+        <dt>Dates</dt>
+        <dd>August 2014 - July 2015</dd>
+
+        <dt>Main activities</dt>
+        <dd>
+          <p>Tech Lead on the <a href ="http://www.broadwand.com/" target="_blank">Broadwand</a> project, on a technical team with 2 members.
+          <p>Responsible for designing the architecture and the implementation of 7 micro-services, 2 Android apps and 1 Firefox add-on.</p>
+        </dd>
+
+        <dt>Technologies</dt>
+        <dd>JavaScript, NodeJS, Redis, MongoDB, Firefox Addon SDK, Android</dd>
+
+        <dt>Employer</dt>
+        <dd><a href="http://www.imaginarycloud.com/" target="_blank">Imaginary Cloud</a></dd>
+      </dl>
+      <dl class="work-experience">
+        <dt>Position</dt>
+        <dd><strong>Front-End Developer</strong></dd>
+
+        <dt>Dates</dt>
+        <dd>September 2012 - August 2014</dd>
+
+        <dt>Main activities</dt>
+        <dd>
+          <p>Development of the frontend layer of the <a href="http://www.betfair.com/sport/" target="_blank">Betfair Sportsbook</a>, having been involved on it since the first day of its inception.</p>
+          <p>Tech Lead for the Google Analytics project and a member of the Frontend Architecture Group.</p>
+        </dd>
+
+        <dt>Technologies</dt>
+        <dd>HTML, CSS, JavaScript, YUI, Less, Jasmine</dd>
+
+        <dt>Employer</dt>
+        <dd><a href="http://www.blip.pt/" target="_blank">Blip / Betfair</a></dd>
+      </dl>
+      <dl class="work-experience">
+        <dt>Position</dt>
+        <dd><strong>Freelance Web Developer</strong></dd>
+
+        <dt>Dates</dt>
+        <dd>May 2013 - December 2013 (Part-time)</dd>
+
+        <dt>Main activities</dt>
+        <dd>
+          <p>
+            Worked on the frontend of four web pages, by implementing responsive, cross-platform and
+            cross-device layouts.
+          </p>
+        </dd>
+
+        <dt>Technologies</dt>
+        <dd>HTML, CSS, JavaScript, jQuery, Photoshop, PHP</dd>
+
+        <dt>Employer</dt>
+        <dd><a href="http://www.waynext.pt/" target="_blank">Waynext</a></dd>
+      </dl>
+      <dl class="work-experience">
+        <dt>Position</dt>
+        <dd><strong>Google Summer of Code - Student</strong></dd>
+
+        <dt>Dates</dt>
+        <dd>May 2009/2010/2011 - August 2009/2010/2011</dd>
+
+        <dt>Main activities</dt>
+        <dd>
+          <p>
+            Participated in three editions of Google Summer of Code as a student.
+            Successfully completed all three web development projects.
+          </p>
+        </dd>
+
+        <dt>Technologies</dt>
+        <dd>HTML, CSS, JavaScript, Java, Spring, Perl</dd>
+
+        <dt>Employer</dt>
+        <dd>Google / OpenMRS / Dreamwidth</dd>
+      </dl>
+      <h3>Education</h3>
+      <dl class="education">
+        <dt>Dates</dt>
+        <dd>September 2007 - July 2012</dd>
+
+        <dt>Title of Qualification</dt>
+        <dd><strong>Master in Informatics and Computer Engineering</strong> (B.Sc. + M.Sc.)</dd>
+
+        <dt>Principal Subjects</dt>
+        <dd>Software Engineering, Programming, Mobile Computing, Database Design, Systems Design, Project Management, Artificial Intelligence, Web Development, Computer Architecture, Operating Systems</dd>
+
+        <dt>Main activities</dt>
+        <dd>
+          <ul>
+            <li><em>Thesis</em>: Multi-touch Interaction for Interface Prototyping (Grade: 19/20).</li>
+            <li><em>Researcher</em>: 6 months grant on applying natural user interfaces to collaborative 3d urban environments (C#/XNA).</li>
+            <li><em>Team Leader</em>: of 8 members, in an academic project done for a real company (iTds).</li>
+            <li><em>NIFEUP Member</em>: Software developer for a classifieds portal for the FEUP community (Ruby on Rails).</li>
+          </ul>
+        </dd>
+
+        <dt>Organization Name</dt>
+        <dd>Faculty of Engineering of the University of Porto (FEUP)</dd>
+
+        <dt>Grade Point Average</dt>
+        <dd>17 out of 20</dd>
+      </dl>
+
+      <h3>Personal skills</h3>
+      <dl class="skills">
+        <dt>Language skills</dt>
+        <dd>Native <strong>Portuguese</strong>, Fluent <strong>English</strong>, Basic <strong>French</strong>, <strong>Spanish</strong>, <strong>Japanese</strong></dd>
+
+        <dt>Social skills</dt>
+        <dd>
+          <ul>
+            <li>Passionate for developing team processes, lean methodologies, business development and user centered design, by experience and self-learning.</li>
+            <li>Ability to work in teams and under pressure, through tight deadlines, while maintaining optimism and a good vibe around the team.</li>
+            <li>Experience in mentoring junior developers, code reviews and dealing with stakeholders from different backgrounds.</li>
+            <li>Strong sense of responsibility, accountability and proactivity, by having worked directly with clients.</li>
+          </ul>
+        </dd>
+
+        <dt>Certifications</dt>
+        <dd>FCE - First Certificate in English (Grade A, C1)</dd>
+        <dd>Certified Scrum Master - Scrum Alliance</dd>
+
+        <dt>Artistic skills</dt>
+        <dd>Formal classical training on Piano, Violin, Musical Formation and Choir.</dd>
+
+        <dt>Driving Licences</dt>
+        <dd>B, B1</dd>
+      </dl>
+    </section>
+  </body>
+</html>

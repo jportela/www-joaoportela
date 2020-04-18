@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    width: auto;
+  }
+}
+
+.icon {
+  display: block;
+  padding: 10px;
+  width: 52px;
+  height: 52px;
+}
+
+.icon > svg {
+  transition: fill linear 0.2s;
+  fill: var(--link-color);
+}
+
+.icon:hover > svg {
+  fill: var(--link-hover-color);
+}

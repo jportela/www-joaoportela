@@ -1,0 +1,9 @@
+.date {
+  font-size: 0.9em;
+  color: var(--secondary-txt-color);
+}
+
+.readMore {
+  text-align: right;
+  font-size: 0.9em;
+}

@@ -1,9 +1,9 @@
-import FileLoader from '../src/loaders/file';
-import Blog from '../src/blog';
-import grayMatterProcessor from '../src/processors/gray-matter'
-import BlogLink from '../components/blog/link';
+import FileLoader from '../../src/loaders/file';
+import Blog from '../../src/blog';
+import grayMatterProcessor from '../../src/processors/gray-matter'
+import BlogLink from '../../components/blog/link';
 
-import * as styles from './home.module.css'
+import * as styles from './blog.module.css'
 
 export default function BlogPage({ posts }) {
   const pages = posts.map(post => {
@@ -19,12 +19,12 @@ export default function BlogPage({ posts }) {
     )
   })
   return (
-    <>
-      <h2>Latest Posts</h2>
+    <div>
+      <h2>Blog</h2>
       <ul className={styles.posts}>
         {pages}
       </ul>
-    </>
+    </div>
   );
 }
 
