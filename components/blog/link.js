@@ -10,7 +10,7 @@ export default function BlogLink({ title, slug, date, excerpt }) {
   return (
     <>
       <h3>
-        <Link href="/blog/[...slug]" as={pageLocation}>
+        <Link href="/blog/[slug]" as={pageLocation}>
           <a>{title}</a>
         </Link>
       </h3>
@@ -19,7 +19,7 @@ export default function BlogLink({ title, slug, date, excerpt }) {
       </p>
       <ReactMarkdown source={excerpt} />
       <p className={styles.readMore}>
-        <Link href="/blog/[...slug]" as={pageLocation}>
+        <Link href="/blog/[slug]" as={pageLocation}>
           <a>(read more)</a>
         </Link>
       </p>
