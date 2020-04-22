@@ -17,7 +17,11 @@ export default function MyApp({ Component, pageProps }) {
     <div className="container">
       <Head>
         <title>João Portela</title>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
+        <meta charset="utf-8" />
+        <meta name="author" content="João Portela" />
+        <meta name="description" content="I’m João, a Software Engineer currently living in Porto, Portugal. I'm passionate about well crafted experiences, that make people’s lives easier." />
+
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
       </Head>
 
       <div className="page">
