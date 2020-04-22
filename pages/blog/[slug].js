@@ -5,7 +5,7 @@ import Blog from '../../src/blog'
 import grayMatterProcessor from '../../src/processors/gray-matter'
 import BlogDate from '../../components/blog/date'
 
-import * as styles from './post.module.css'
+import * as styles from './slug.module.css'
 
 export default function BlogPost({ content, metadata }) {
   const renderedNotes = metadata.notes ? (
@@ -18,7 +18,7 @@ export default function BlogPost({ content, metadata }) {
 
       <h2 className={styles.title}>{metadata.title}</h2>
       <p className={styles.date}>
-        <BlogDate date={metadata.date} className={styles.date} />
+        Written on <BlogDate date={metadata.date} className={styles.date} />
       </p>
       {renderedNotes}
 

@@ -1,8 +1,8 @@
 {
   "posts": [
     {
-      "location": "2020/04/creating-my-personal-blog.md",
-      "slug": "creating-my-personal-blog"
+      "location": "2020/04/on-sabbaticals.md",
+      "slug": "on-sabbaticals"
     },
     {
       "location": "2016/04/persist-redux-state-using-sagas.md",

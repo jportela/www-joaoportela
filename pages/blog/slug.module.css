@@ -4,7 +4,9 @@
 
 .date {
   color: var(--secondary-txt-color);
+  font-style: italic;
   margin-bottom: 2.5em;
+  font-size: 0.8em;
 }
 
 .notes {
