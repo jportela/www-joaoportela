@@ -1,26 +1,30 @@
 ---
-  title: On Sabatticals
-  date: "2020-04-22"
+  title: On Sabbaticals
+  date: "2020-04-27"
   tags:
     - Life
 ---
 
-I’m currently on a short sabbatical, after working as a software engineer for the last 8 years (practically non-stop). In this post I explain the reasons that led me to decide on taking a sabbatical, and what I'm planning for it.
+I’m currently on a short sabbatical, after working as a software engineer for the last 8 years. In this post I explain the reasons that led me to decide on taking a sabbatical, and what I'm planning on doing for it.
 
 ### Why take a sabbatical?
 
 Sabbaticals are great! [Don’t just take my word for it](https://www.joelonsoftware.com/2000/03/18/more-on-sabbaticals/).
+
 You might have been working for a long time, and feel you need the free time. Maybe you want to travel, or explore other interests or career opportunities. Those are all very good reasons.
-In my case, I've been toying with the idea of having a long vacation for the last few years. Four months ago it became real. I started to feel I was not progressing as I wanted on my career. It felt I was on a moving train, that never stopped, going from one fire to the next, without looking at the big picture. One day, I started brainstorming and planning on what I would do if I didn't have a job. The plan got me excited, in a way that I haven't been feeling in a long time. That's when I knew I needed this to happen.
+
+In my case, I've been toying with the idea of having a long vacation for the last few years. Four months ago it became real. I started to feel I was not progressing as I wanted on my career. It felt like I was on a moving train, that never stopped, going from one fire to the next without looking at the big picture.
+
+One day, I started brainstorming and planning on what I would do if I didn't have a job. The plan got me excited, in a way that I haven't been feeling in a long time. That's when I knew I needed this to happen.
 
 ### What do people do on a sabbatical?
 
-A sabbatical is highly personal. In my particular case, I've been feeling the need to improve my craft and fill gaps on my technical knowledge, in order to be more confident on the work I do (I suspect this is fueled by [Imposter's Syndrome](https://www.hanselman.com/blog/ImAPhonyAreYou.aspx), but learning can't hurt). Given the short period of it (1.5 months), I've decided to structure it on four key areas:
+A sabbatical is highly personal. In my particular case, I've been feeling the need to improve my craft and fill gaps on my technical knowledge, in order to be more confident on the work I do (I suspect this is fueled by [Imposter's Syndrome](https://www.hanselman.com/blog/ImAPhonyAreYou.aspx), but learning can't hurt). I've decided to structure it on four key areas:
 
-  * Learn
-  * Build
-  * Grow
-  * Relax
+  * *Learn*
+  * *Build*
+  * *Grow*
+  * *Relax*
 
 ### Learn
 
@@ -87,7 +91,7 @@ I’m happiest when I’m building. That's why I love being a software engineer.
 
 _**Motivation:** Explore other interests. Get better on everyday things._
 
-These are things that make me happy on my daily life, and that I want to explore more or get better at. I might write about these in here, occasionally:
+These are things that make me happy on my daily life, and that I want to explore more or get better at. I might write about these in this blog, occasionally:
 
   * **Cooking** (I'm getting better at it, but there's still a lot I need to learn/practice)
   * **Piano** (I've stopped learning/playing and I want it to be part of my life again)
@@ -107,5 +111,7 @@ Play games. Watch TV. Read. Go through a Wikipedia rabbit-hole for two hours. Ha
 ## Wrapping up
 
 I’m really excited about this sabbatical (and even more excited about my next career step, as the first Front-End Engineer at [FitBod](https://fitbod.me)). It has already been rewarding to step back from the day to day, have time to catch up with the front-end community and develop this blog.
+
 I highly encourage you to take a sabbatical if possible (between jobs, or negotiate it with your employee), specially if you’ve been feeling overwhelmed or unmotivated by your daily job.
-I’ve found that a sabbatical for personal development, and planning for it beforehand, were very helpful for me, but don’t feel the need to plan or overthink it. And it doesn’t need to be about learning or self-development. It should be for what you need.
+
+I’ve found that a sabbatical for personal development, and planning for it beforehand, were very helpful for me, but don’t feel the need to plan or overthink it. And it doesn’t need to be about learning or self-development. It should be about what you need.
