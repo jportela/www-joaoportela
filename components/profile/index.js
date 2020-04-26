@@ -9,7 +9,7 @@ export default function Profile() {
       <h1 className={styles.name}>João Portela</h1>
 
       <p className={styles.shortBio}>
-        👋 I’m a Software Engineer, passionate about well crafted experiences, that make people’s lives easier.
+        👋 I’m a Software Engineer, passionate about building well crafted, user centered experiences.
       </p>
 
       <ProfileContact />
