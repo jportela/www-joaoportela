@@ -30,7 +30,13 @@ export default function BlogPage({ posts }) {
 
 export async function getStaticProps() {
   const fileLoader = new FileLoader()
-  const blog = new Blog(fileLoader, grayMatterProcessor)
+  const blog = new Blog({
+    loader: fileLoader,
+    metadataProcessor: grayMatterProcessor,
+    contentProcessor: contentProcessor,
+    ignoreContent: true,
+  })
+
   await blog.loadManifest('manifest.json')
   const posts = await Promise.all(blog.posts.map(async (post) => {
     await post.load()

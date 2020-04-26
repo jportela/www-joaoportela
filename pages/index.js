@@ -4,6 +4,7 @@ import grayMatterProcessor from '../src/processors/gray-matter'
 import BlogLink from '../components/blog/link';
 
 import * as styles from './home.module.css'
+import markdownProcessor from '../src/processors/markdown';
 
 export default function BlogPage({ posts }) {
   const pages = posts.map(post => {
@@ -30,7 +31,13 @@ export default function BlogPage({ posts }) {
 
 export async function getStaticProps() {
   const fileLoader = new FileLoader()
-  const blog = new Blog(fileLoader, grayMatterProcessor)
+  const blog = new Blog({
+    loader: fileLoader,
+    metadataProcessor: grayMatterProcessor,
+    contentProcessor: markdownProcessor,
+    ignoreContent: true,
+  })
+
   await blog.loadManifest('manifest.json')
   const posts = await Promise.all(blog.posts.map(async (post) => {
     await post.load()

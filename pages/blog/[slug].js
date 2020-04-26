@@ -1,28 +1,28 @@
-import ReactMarkdown from 'react-markdown'
-
 import FileLoader from '../../src/loaders/file'
 import Blog from '../../src/blog'
 import grayMatterProcessor from '../../src/processors/gray-matter'
 import BlogDate from '../../components/blog/date'
 
 import * as styles from './slug.module.css'
+import BlogMarkdown from '../../components/blog/markdown'
+import markdownProcessor from '../../src/processors/markdown'
 
-export default function BlogPost({ content, metadata }) {
-  const renderedNotes = metadata.notes ? (
+export default function BlogPost({ content, metadata, notes }) {
+  const renderedNotes = notes ? (
     <div className={styles.notes}>
-      <ReactMarkdown source={metadata.notes} />
+      <BlogMarkdown content={notes} />
     </div>
   ) : null
   return (
     <article>
 
       <h2 className={styles.title}>{metadata.title}</h2>
+      {renderedNotes}
       <p className={styles.date}>
         Written on <BlogDate date={metadata.date} className={styles.date} />
       </p>
-      {renderedNotes}
 
-      <ReactMarkdown source={content} />
+      <BlogMarkdown content={content} />
 
     </article>
   )
@@ -30,7 +30,11 @@ export default function BlogPost({ content, metadata }) {
 
 export async function getStaticPaths() {
   const fileLoader = new FileLoader()
-  const blog = new Blog(fileLoader)
+  const blog = new Blog({
+    loader: fileLoader,
+    ignoreContent: true,
+    ignoreMetadata: true,
+  })
 
   await blog.loadManifest('manifest.json')
 
@@ -47,7 +51,11 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const slug = context.params.slug
   const fileLoader = new FileLoader()
-  const blog = new Blog(fileLoader, grayMatterProcessor)
+  const blog = new Blog({
+    loader: fileLoader,
+    metadataProcessor: grayMatterProcessor,
+    contentProcessor: markdownProcessor,
+  })
   await blog.loadManifest('manifest.json')
 
   const post = blog.findPostBySlug(slug)
@@ -58,6 +66,7 @@ export async function getStaticProps(context) {
     props: {
       metadata: post.metadata,
       content: post.content,
+      notes: post.notes,
     }
   }
 

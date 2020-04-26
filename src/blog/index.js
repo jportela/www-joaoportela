@@ -1,8 +1,13 @@
 import BlogPost from './post'
 
 export default class Blog {
-  constructor(loader, contentProcessor) {
+  constructor({
+    loader,
+    metadataProcessor,
+    contentProcessor,
+  }) {
     this.loader = loader
+    this.metadataProcessor = metadataProcessor
     this.contentProcessor = contentProcessor
     this.posts = []
   }
@@ -12,7 +17,11 @@ export default class Blog {
     const manifest = JSON.parse(content)
 
     this.posts = manifest.posts.map(post =>
-      new BlogPost(post, this.loader, this.contentProcessor)
+      new BlogPost(post, {
+        loader: this.loader,
+        metadataProcessor: this.metadataProcessor,
+        contentProcessor: this.contentProcessor,
+      })
     )
   }
 

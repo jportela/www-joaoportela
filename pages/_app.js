@@ -6,8 +6,7 @@ import Navigation from '../components/navigation'
 import Footer from '../components/footer'
 import Main from '../components/main'
 
-import 'prismjs';
-import 'prismjs/themes/prism-tomorrow.css';
+import 'highlight.js/styles/tomorrow-night.css';
 import '../styles/global.css'
 
 export default function MyApp({ Component, pageProps }) {
@@ -17,9 +16,9 @@ export default function MyApp({ Component, pageProps }) {
     <div className="container">
       <Head>
         <title>João Portela</title>
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
         <meta name="author" content="João Portela" />
-        <meta name="description" content="I’m João, a Software Engineer currently living in Porto, Portugal. I'm passionate about well crafted experiences, that make people’s lives easier." />
+        <meta name="description" content="I’m João, a Software Engineer currently living in Porto, Portugal. I’m passionate about building well crafted, user centered experiences." />
 
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
       </Head>

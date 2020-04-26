@@ -23,6 +23,17 @@ body {
   line-height: 1.5em;
 }
 
+h2 {
+  font-size: 2em;
+  margin: 2em 0;
+}
+
+h3 {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-top: 2em;
+}
+
 a {
   color: var(--link-color);
   text-decoration: none;
@@ -81,18 +92,3 @@ a:hover {
   }
 }
 
-
-h2 {
-  font-size: 2em;
-  margin: 2em 0;
-}
-
-h3 {
-  font-size: 1.4em;
-  font-weight: bold;
-  margin-top: 2em;
-}
-
-pre[class*="language-"] {
-  font-size: 0.8em;
-}
