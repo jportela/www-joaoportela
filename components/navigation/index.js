@@ -38,8 +38,10 @@ export default function Navigation() {
     )
   })
   return (
-    <ul className={styles.container}>
-      {renderedNavigation}
-    </ul>
+    <nav>
+      <ul className={styles.navigationLinks}>
+        {renderedNavigation}
+      </ul>
+    </nav>
   )
 }

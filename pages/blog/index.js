@@ -4,6 +4,7 @@ import grayMatterProcessor from '../../src/processors/gray-matter'
 import BlogLink from '../../components/blog/link';
 
 import * as styles from './blog.module.css'
+import markdownProcessor from '../../src/processors/markdown';
 
 export default function BlogPage({ posts }) {
   const pages = posts.map(post => {
@@ -33,7 +34,7 @@ export async function getStaticProps() {
   const blog = new Blog({
     loader: fileLoader,
     metadataProcessor: grayMatterProcessor,
-    contentProcessor: contentProcessor,
+    contentProcessor: markdownProcessor,
     ignoreContent: true,
   })
 

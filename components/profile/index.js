@@ -4,7 +4,7 @@ import * as styles from './profile.module.css'
 
 export default function Profile() {
   return (
-    <div className={styles.container}>
+    <header className={styles.container}>
       <img src="/jportela.jpg" alt="Joao's Photo" className={styles.photo} />
       <h1 className={styles.name}>João Portela</h1>
 
@@ -13,7 +13,7 @@ export default function Profile() {
       </p>
 
       <ProfileContact />
-    </div>
+    </header>
   )
 
 }

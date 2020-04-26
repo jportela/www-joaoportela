@@ -20,7 +20,7 @@ export default function BlogLink({ title, slug, date, excerpt }) {
       <BlogMarkdown content={excerpt} />
       <p className={styles.readMore}>
         <Link href="/blog/[slug]" as={pageLocation}>
-          <a>(read more)</a>
+          <a>read more →</a>
         </Link>
       </p>
     </>

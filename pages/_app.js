@@ -24,21 +24,15 @@ export default function MyApp({ Component, pageProps }) {
       </Head>
 
       <div className="page">
-        <header>
-          <Profile />
-        </header>
+        <Profile />
         <div className="content">
-          <nav>
-            <Navigation currentPagePath={currentPagePath}/>
-          </nav>
+          <Navigation currentPagePath={currentPagePath}/>
           <Main>
             <Component {...pageProps} />
           </Main>
         </div>
       </div>
-      <footer>
-        <Footer />
-      </footer>
+      <Footer />
     </div>
   )
 }

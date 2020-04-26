@@ -1,9 +1,9 @@
 :root {
   --main-bg-color: white;
   --main-txt-color: #2E2E2E;
-  --secondary-bg-color: #298CE7;
+  --main-header-color: #195388;
   --link-color: #298CE7;
-  --link-hover-color: #1166B6;
+  --link-hover-color: #195388;
   --secondary-txt-color: #686868;
 }
 
@@ -21,6 +21,10 @@ body {
   margin: 0;
   font-size: 100%;
   line-height: 1.5em;
+}
+
+h1, h2, h3, strong {
+  color: var(--main-header-color);
 }
 
 h2 {
@@ -56,11 +60,12 @@ a:hover {
 .page {
   display: flex;
   flex: 1;
+  width: 100%;
 }
 
 .content {
-  padding: 0 0 0 90px;
-  width: 800px;
+  padding: 0 0 0 40px;
+  width: 850px;
   font-size: 1.1em;
   line-height: 1.8em;
 }
@@ -77,18 +82,19 @@ a:hover {
 
   .container {
     padding: 1em 0;
-    width: 800px;
+    width: 850px;
   }
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 850px) {
   .content {
     margin: 0;
     width: 100%;
   }
   .container {
-    width: auto;
-    margin: 0 1em;
+    width: 100%;
+    margin: 0;
+    padding: 1em;
   }
 }
 

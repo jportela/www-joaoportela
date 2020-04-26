@@ -79,7 +79,7 @@ I've started by brainstorming what I wanted to learn about, or what I felt I nee
     * [Notion](https://www.notion.so/)
     * [Todoist](https://todoist.com/)
 
-I probably won't have the time to cover everything that's on the list, but that's fine. As every brainstorm, this is a starting point, that I'll need to prioritize.
+I probably won't have the time to cover everything that's on the list, but that's fine. As every brainstorm, this is a starting point, that I'll need to prioritize, and I'm sure new things will take my focus as I go.
 
 ### Build
 
@@ -108,7 +108,7 @@ _**Motivation:** Sabbaticals should be fun._
 
 Play games. Watch TV. Read. Go through a Wikipedia rabbit-hole for two hours. Have fun.
 
-## Wrapping up
+### Wrapping up
 
 I’m really excited about this sabbatical (and even more excited about my next career step, as the first Front-End Engineer at [FitBod](https://fitbod.me)). It has already been rewarding to step back from the day to day, have time to catch up with the front-end community and develop this blog.
 
