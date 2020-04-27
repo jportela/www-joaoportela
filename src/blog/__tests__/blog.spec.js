@@ -14,7 +14,9 @@ const MANIFEST = 'manifest'
 const loader = new MemoryLoader()
 loader.set(MANIFEST, mockManifest)
 
-const blog = new Blog(loader, '/test')
+const blog = new Blog({
+  loader
+})
 
 beforeEach(async () => {
   await blog.loadManifest(MANIFEST)

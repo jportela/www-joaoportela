@@ -8,7 +8,7 @@ const loader = new MemoryLoader()
 loader.set(POST, mockPost)
 
 test('load loads the content of a post', async () => {
-  const post = new BlogPost({ location: POST }, loader)
+  const post = new BlogPost({ location: POST }, { loader })
   await post.load()
   expect(post.content).toBe('## Hello World!')
 })
