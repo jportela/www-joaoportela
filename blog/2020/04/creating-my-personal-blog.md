@@ -5,14 +5,17 @@
     - Next.js
 ---
 
-This is under construction, not yet finished!
+As I'm currently enjoying a [personal development sabbatical](/blog/on-sabbaticals), I've decided to start by revamping my website from scratch, and creating a blog.
+In this post, I explain why I created it, and the technical decisions I've made.
 
-As I'm currently on a small personal development [sabbatical](https://www.joelonsoftware.com/2000/03/18/more-on-sabbaticals/) while I'm between jobs, I've decided to start by creating a blog and revamping my personal website from scratch.
 
-I wanted it to be simple and easily iterateable (inspired by the concept of [Incremental Correctness, by Guillermo Rauch](https://designdetails.fm/episodes/113490)) and to provide an effective way for me to communicate my ideas and to maintain a web presence.
-If you are reading this now, that means it kind of did its job.
+### Motivations and goals
 
-This blog posts explains how I created my website and blog, and the technical decisions that went along with it.
+It is important to me to have a presence on the web, where I can showcase my work and share articles and opinions. I've learned a lot from other people's blog posts and articles,
+and I'm trying to write more, as a way to structure my thoughts and share knowledge with others. Writing forces me to research and structure my thoughts, and by putting it out there
+it allows other people to benefit from it, and call me out on disagreements or improvements. It's a win-win.
+
+Following the concept of [Incremental Correctness (by Guillermo Rauch, and applied to personal websites by Brian Lovin)](https://brianlovin.com/overthought/incrementally-correct-personal-websites), I wanted this first version of my website/blog to be simple and to allow for quick iteration.
 
 ### Using React for a static site
 
@@ -20,15 +23,25 @@ My website and blogs are mostly going to be static. That means that I'm not expe
 
 React and Static are almost opposite in semantics. A few years ago I would have defended using plain HTML for your personal website. React is intended for highly reactive (updating fairly often) applications.
 While React was built (and it's really good) at supporting that use case, its component based architecture makes it easier to reason your website into small reusable components.
-React is also good at generating static HTML pages, that can be delivered right at the edge, next to the users, via a CDN. New frameworks such as [Gatsby.js](https://gatsbyjs.com) and [Next.js](https://nextjs.com)
+
+React is also good at generating static HTML pages, that can be delivered right at the edge, next to the users, via a CDN. Frameworks such as [Gatsby.js](https://gatsbyjs.com) and [Next.js](https://nextjs.com)
 make this setup and workflow easy, providing an accelerated development experience.
 
 There's nothing wrong with using plain HTML/CSS/JS, or really any other tool for your personal website and blog. Just go with the tool that will better accomplish your goals, whatever they might be.
 
 ### Going with Next.js as a base framework
 
-I've been exploring [Next.js](https://nextjs.org) lately, as the base framework for a full-featured web application. It provides interesting features out of the box, such as Universal Rendering (server side rendering using the same React components that are used in the client).
-What I'm liking the most is how decoupled the framework is from your code base. It is practically unopinionated on how you structure your source code (apart from the `pages` directory, which can also be customized) and the coupling pieces are just on a few hook points (such as `getStaticProps`) and methods/components (such as `Link` or `useRouter`),
-that could be abstracted away to promote easier decoupling. It also allows you to get away from webpack and build configurations (while allowing for customization), and to deploy easily (to [ZEIT](https://zeit.co)) or any other provider.
+I've been exploring [Next.js](https://nextjs.org) lately, as the base framework for a full-featured web application. It provides interesting features out of the box, such as Universal Rendering (server side rendering using the same React components that are used in the client). This allows me to create a fully rendered static HTML page that's served at the edge, while maintaning the SPA experience, that makes changing between pages
+very fast.
 
- 
+What I'm liking the most is how decoupled the framework is from your code base. It is practically unopinionated on how you structure your source code (apart from the `pages` directory, which can also be customized) and the coupling pieces are just on a few hook points (such as `getStaticProps`) and methods/components (such as `Link` or `useRouter`),
+that could be abstracted away to promote easier decoupling. This makes it relatively easy to opt-out from it and change it to another React based framework, if I ever feel the need to do that.
+
+It also allows you to get away from webpack and build configurations (while allowing for customization), and to easily deploy (it generates a `.next` directory with the build assets that need to be deployed).
+
+If your goal is just to get a website/blog up and running, my suggestion will have to go for using Wordpress or Gatsby.js. Next.js is a more generic framework for web apps, and while it's certainly possible to
+create your blog in it (in fact, the official tutorial explains how to do it), it's not as easy/quicker as with Wordpress or Gatsby.
+
+### Setup
+
+
