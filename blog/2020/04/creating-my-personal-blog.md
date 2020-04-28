@@ -5,7 +5,7 @@
     - Next.js
 ---
 
-As I'm currently enjoying a [personal development sabbatical](/blog/on-sabbaticals), I've decided to start by revamping my website from scratch, and creating a blog.
+I've decided to start [my sabbatical](/blog/on-sabbaticals) by revamping my website from scratch, and creating a blog.
 In this post, I explain why I created it, and the technical decisions I've made.
 
 
@@ -42,6 +42,23 @@ It also allows you to get away from webpack and build configurations (while allo
 If your goal is just to get a website/blog up and running, my suggestion will have to go for using Wordpress or Gatsby.js. Next.js is a more generic framework for web apps, and while it's certainly possible to
 create your blog in it (in fact, the official tutorial explains how to do it), it's not as easy/quicker as with Wordpress or Gatsby.
 
-### Setup
+### Initial Setup
+
+The initial setup for a Next.js app is pretty straightforward (especially if you know React already). I highly recommend [reading and following along the official Learn tutorial](https://nextjs.org/learn/), which makes an excellent job explaining how to write your own blog using Next.js.
+
+There are a few differences, or features that were not covered by the blog that I will highlight in the next sections.
+
+### Separating the business logic from the presentational components
+
+By separating the business logic (in this case, logic related to Blogs and Blog Posts)
+
+### Using a manifest for discovering blog pages
+
+[The tutorial](https://nextjs.org/learn/basics/data-fetching/implement-getstaticprops) reads the `posts` directory on the file system for retrieving blog posts. I decided to have a manifest file on the root directory of my `blog` directory. This enables me to have “drafts” (I can have WIP Markdown files on the directory, that are not published), and control the ordering of the blog posts (I could also have used the `date` attribute on the metadata for achieving this).
+
+At first I thought this approach would be more efficient (since we only read a `manifest.json` instead of going through the directory and parsing every blog post in it), but considering that this only affects the build time, and not the user, I might reconsider and use the same approach on the tutorial (I can add a `draft` attribute on each blog post that is a draft).
+
+### Use of 
+
 
 
