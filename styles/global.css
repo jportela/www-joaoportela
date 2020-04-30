@@ -48,9 +48,18 @@ a:hover {
   text-decoration: underline;
 }
 
+code {
+  background: #eee;
+  padding: 0.2em;
+}
+
 .hljs {
   line-height: 1.5em;
   padding: 1em;
+}
+
+.hljs code {
+  background: none;
 }
 
 .container {

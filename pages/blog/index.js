@@ -3,7 +3,7 @@ import Blog from '../../src/blog'
 import grayMatterProcessor from '../../src/processors/gray-matter'
 import BlogLink from '../../components/blog/link'
 
-import * as styles from './blog.module.css'
+import styles from './blog.module.css'
 import markdownProcessor from '../../src/processors/markdown'
 
 export default function BlogPage ({ posts }) {

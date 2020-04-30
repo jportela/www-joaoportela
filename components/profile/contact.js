@@ -3,7 +3,7 @@ import TwitterIcon from '../../icons/twitter.svg'
 import LinkedinIcon from '../../icons/linkedin.svg'
 import CvIcon from '../../icons/cv.svg'
 
-import * as styles from './contact.module.css'
+import styles from './contact.module.css'
 
 const CONTACTS = [
   {

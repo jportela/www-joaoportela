@@ -1,7 +1,7 @@
 import BlogDate from './date'
 import BlogMarkdown from './markdown'
 
-import * as styles from './header.module.css'
+import styles from './header.module.css'
 
 export default function BlogHeader ({ title, date, notes, tags }) {
   const renderedNotes = notes ? (

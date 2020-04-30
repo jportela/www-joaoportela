@@ -3,7 +3,7 @@ import Link from 'next/link'
 import BlogDate from './date'
 import BlogMarkdown from './markdown'
 
-import * as styles from './link.module.css'
+import styles from './link.module.css'
 
 export default function BlogLink ({ title, slug, date, excerpt }) {
   const pageLocation = `/blog/${slug}`

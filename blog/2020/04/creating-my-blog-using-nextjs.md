@@ -5,15 +5,12 @@
     - Next.js
 ---
 
-I've decided to start [my sabbatical](/blog/on-sabbaticals) by revamping my website from scratch, and creating a blog.
-In this post, I explain why I created it, and the technical decisions I've made.
+I've decided to start [my sabbatical](/blog/on-sabbaticals) by revamping my website from scratch, and creating a blog. In this post, I explain why I created it, and the technical decisions I've made while developing it.
 
 
 ### Motivations and goals
 
-It is important to me to have a presence on the web, where I can showcase my work and share articles and opinions. I've learned a lot from other people's blog posts and articles,
-and I'm trying to write more, as a way to structure my thoughts and share knowledge with others. Writing forces me to research and structure my thoughts, and by putting it out there
-it allows other people to benefit from it, and call me out on disagreements or improvements. It's a win-win.
+It is important to me to have a presence on the web, where I can showcase my work and share articles and opinions. I've learned a lot from other people's blog posts and articles, and I'm trying to write more, as a way to structure my thoughts and share knowledge with others. Writing forces me to research and structure my thoughts, and by putting it out there it allows other people to benefit from it, and call me out on disagreements or improvements. It's a win-win.
 
 Following the concept of [Incremental Correctness (by Guillermo Rauch, and applied to personal websites by Brian Lovin)](https://brianlovin.com/overthought/incrementally-correct-personal-websites),
 I wanted this first version of my website/blog to be simple and to allow for quick iteration.
@@ -65,9 +62,49 @@ At first I thought this approach would be more efficient (since we only read a `
 
 ### Use of marked and highlightjs
 
-Instead of using remark I've decided to use marked. I also changed the code renderer on marked to render highlighted code, using highlightjs.
+Instead of using remark (which is used by the Next.js tutorial) I've decided to use marked. I also changed the code renderer on marked to render highlighted code, using highlightjs. There was no particular reason for me to chose marked. I chose it because I started working on this blog before the tutorial was released.
 
-I debated on whether I wanted the blog contents to be served in Markdown format and then rendered in HTML in the client, or serve it directly as HTML. I've settled for
+I debated on whether I wanted the blog contents to be served in Markdown format and then rendered in HTML in the client, or serve it directly as HTML. With static generation that produces no difference on the HTML output, but when navigating between pages in the client, it will. With the first option, it will fetch the raw markdown in a text format, on the second, it will fetch it already rendered as HTML. The second option will produce more output (all the HTML tags), so I've chosen the first option, to minimize the network payload when navigating between pages.
 
+To accomplish this, you make use of `getStaticProps`:
 
+```js
+// this will fetch the raw markdown content, for later processing
+// by the React component
+async function getStaticProps() {
+const rawContent = await getContent()
 
+return {
+  props: {
+    content: rawContent
+  }
+}
+
+// this is the component that will process it
+// static site generation will build it as static html
+// but if you're navigating, it will be executed in the client
+function MyComponent({ content }) {
+  const htmlContent = processMarkdown(content)
+}
+
+```
+
+To render the HTML in the client (the second option), you can do the following:
+
+```js
+// this will fetch the already processed HTML content
+async function getStaticProps() {
+const content = processMarkdown(await getContent())
+
+return {
+  props: {
+    content,
+  }
+}
+```
+
+### A lack of pagination
+
+You might notice that I haven't implemented any pagination yet. It's an UX nightmare! The truth is that I only have 3 articles on the blog, so I don't need any pagination yet. This fits into the Incremental Correctness principle I mentioned previously. The current truth of this blog doesn't demand a pagination yet, which gives me time to focus on other things and release earlier. As a related anecdote, Basecamp was first launched without a billing system, because they knew they had 30 days until they needed one.
+
+ 
