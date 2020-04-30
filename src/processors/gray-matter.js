@@ -1,17 +1,16 @@
 import matter from 'gray-matter'
 
-function getExcerpt(file) {
+function getExcerpt (file) {
   file.excerpt = file.content.split('\n').find(excerpt => excerpt)
-
 }
 
-export default function grayMatterProcessor(rawContent) {
+export default function grayMatterProcessor (rawContent) {
   const value = matter(rawContent, {
-    excerpt: getExcerpt,
+    excerpt: getExcerpt
   })
   return {
     data: value.data,
     content: value.content,
-    excerpt: value.excerpt,
+    excerpt: value.excerpt
   }
 }

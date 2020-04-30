@@ -25,11 +25,10 @@ const CONTACTS = [
     href: '/cv.html',
     Icon: CvIcon,
     description: 'CV'
-  },
+  }
 ]
 
-export default function ProfileContact() {
-
+export default function ProfileContact () {
   const renderedContacts = CONTACTS.map((contact, i) => (
     <li className={styles.item} key={`contact-${i}`}>
       <a className={styles.icon} href={contact.href} title={contact.description}>

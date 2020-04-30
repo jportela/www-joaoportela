@@ -1,4 +1,4 @@
-export default function ProjectsPage() {
+export default function ProjectsPage () {
   return (
     <div>
       <h2>Projects</h2>
@@ -6,5 +6,5 @@ export default function ProjectsPage() {
         🚧This page is under construction 🚧
       </p>
     </div>
-  );
+  )
 }

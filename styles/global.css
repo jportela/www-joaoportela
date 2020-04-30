@@ -48,6 +48,11 @@ a:hover {
   text-decoration: underline;
 }
 
+.hljs {
+  line-height: 1.5em;
+  padding: 1em;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -64,7 +69,7 @@ a:hover {
 }
 
 .content {
-  padding: 0 0 0 40px;
+  padding: 0 0 0 50px;
   width: 850px;
   font-size: 1.1em;
   line-height: 1.8em;

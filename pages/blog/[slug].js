@@ -1,39 +1,36 @@
-import FileLoader from '../../src/loaders/file'
 import Blog from '../../src/blog'
+import FileLoader from '../../src/loaders/file'
 import grayMatterProcessor from '../../src/processors/gray-matter'
-import BlogDate from '../../components/blog/date'
-
-import * as styles from './slug.module.css'
-import BlogMarkdown from '../../components/blog/markdown'
 import markdownProcessor from '../../src/processors/markdown'
+import BlogMarkdown from '../../components/blog/markdown'
+import BlogLicense from '../../components/blog/license'
+import BlogHeader from '../../components/blog/header'
 
-export default function BlogPost({ content, metadata, notes }) {
-  const renderedNotes = notes ? (
-    <div className={styles.notes}>
-      <BlogMarkdown content={notes} />
-    </div>
-  ) : null
+export default function BlogPost ({ content, metadata, notes }) {
   return (
     <article>
 
-      <h2 className={styles.title}>{metadata.title}</h2>
-      {renderedNotes}
-      <p className={styles.date}>
-        Written on <BlogDate date={metadata.date} className={styles.date} />
-      </p>
+      <BlogHeader
+        title={metadata.title}
+        date={metadata.date}
+        tags={metadata.tags}
+        notes={notes}
+      />
 
       <BlogMarkdown content={content} />
+
+      <BlogLicense />
 
     </article>
   )
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths () {
   const fileLoader = new FileLoader()
   const blog = new Blog({
     loader: fileLoader,
     ignoreContent: true,
-    ignoreMetadata: true,
+    ignoreMetadata: true
   })
 
   await blog.loadManifest('manifest.json')
@@ -44,17 +41,17 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: false
   }
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps (context) {
   const slug = context.params.slug
   const fileLoader = new FileLoader()
   const blog = new Blog({
     loader: fileLoader,
     metadataProcessor: grayMatterProcessor,
-    contentProcessor: markdownProcessor,
+    contentProcessor: markdownProcessor
   })
   await blog.loadManifest('manifest.json')
 
@@ -66,8 +63,7 @@ export async function getStaticProps(context) {
     props: {
       metadata: post.metadata,
       content: post.content,
-      notes: post.notes,
+      notes: post.notes
     }
   }
-
 }

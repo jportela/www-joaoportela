@@ -19,21 +19,21 @@ const NAVIGATION = [
   {
     href: '/about',
     label: 'About'
-  },
+  }
 ]
 
-export default function Navigation() {
+export default function Navigation () {
   const router = useRouter()
   const renderedNavigation = NAVIGATION.map((navigation, i) => {
     const isCurrentPage = router.pathname === navigation.href
     return (
       <li key={`navigation-${i}`}>
-        { isCurrentPage ?
-          navigation.label : (
-          <Link href={navigation.href}>
-            <a>{navigation.label}</a>
-          </Link>
-        )}
+        {isCurrentPage
+          ? navigation.label : (
+            <Link href={navigation.href}>
+              <a>{navigation.label}</a>
+            </Link>
+          )}
       </li>
     )
   })

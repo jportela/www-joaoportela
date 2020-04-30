@@ -1,5 +1,5 @@
 ---
-  title: Creating my personal blog using Next.js
+  title: Creating my blog using Next.js
   date: "2020-04-22"
   tags:
     - Next.js
@@ -15,7 +15,8 @@ It is important to me to have a presence on the web, where I can showcase my wor
 and I'm trying to write more, as a way to structure my thoughts and share knowledge with others. Writing forces me to research and structure my thoughts, and by putting it out there
 it allows other people to benefit from it, and call me out on disagreements or improvements. It's a win-win.
 
-Following the concept of [Incremental Correctness (by Guillermo Rauch, and applied to personal websites by Brian Lovin)](https://brianlovin.com/overthought/incrementally-correct-personal-websites), I wanted this first version of my website/blog to be simple and to allow for quick iteration.
+Following the concept of [Incremental Correctness (by Guillermo Rauch, and applied to personal websites by Brian Lovin)](https://brianlovin.com/overthought/incrementally-correct-personal-websites),
+I wanted this first version of my website/blog to be simple and to allow for quick iteration.
 
 ### Using React for a static site
 
@@ -31,8 +32,9 @@ There's nothing wrong with using plain HTML/CSS/JS, or really any other tool for
 
 ### Going with Next.js as a base framework
 
-I've been exploring [Next.js](https://nextjs.org) lately, as the base framework for a full-featured web application. It provides interesting features out of the box, such as Universal Rendering (server side rendering using the same React components that are used in the client). This allows me to create a fully rendered static HTML page that's served at the edge, while maintaning the SPA experience, that makes changing between pages
-very fast.
+I've been exploring [Next.js](https://nextjs.org) lately, as the base framework for a full-featured web application. It provides interesting features out of the box, such as Universal Rendering
+(server side rendering using the same React components that are used in the client). This allows me to create a fully rendered static HTML page that's served at the edge,
+while maintaning the SPA experience, that makes changing between pages very fast.
 
 What I'm liking the most is how decoupled the framework is from your code base. It is practically unopinionated on how you structure your source code (apart from the `pages` directory, which can also be customized) and the coupling pieces are just on a few hook points (such as `getStaticProps`) and methods/components (such as `Link` or `useRouter`),
 that could be abstracted away to promote easier decoupling. This makes it relatively easy to opt-out from it and change it to another React based framework, if I ever feel the need to do that.
@@ -48,17 +50,24 @@ The initial setup for a Next.js app is pretty straightforward (especially if you
 
 There are a few differences, or features that were not covered by the blog that I will highlight in the next sections.
 
-### Separating the business logic from the presentational components
+### Separating concerns
 
-By separating the business logic (in this case, logic related to Blogs and Blog Posts)
+I started building this website by modeling the UI components (stored under /components) for the header, navigation and footer. Since these will always be the same components, regardless of the page they are in, I've included them on the `_app.js`. This will make them part of the Single Page App, when navigating between pages on my website. Next.js handles fetching the required pages (and also a bunch of optimizations, such as code splitting, so that only the assets related to a page are loaded, and asset preloading, when you hover a link)
 
-### Using a manifest for discovering blog pages
+Separating the business logic (in this case, logic related to Blogs and Blog Posts) from the presentational components makes the code easier to read, maintain and test. I also made sure dependencies were properly encapsulated, which are injected into the entities that need them. If I ever want to create a native GUI, or CLI to replace the React components, the logic for blogs and blog posts should stay pretty much untouched, as long as the same interfaces are fulfilled. The same can be said for retrieving posts (currently using the file system, but I could refactor it easily to use a headless CMS, for example) and for processing markdown (if I ever want to write my posts in Latex, instead of Markdown. Yep, never going to happen, but still, it's nice to have options)
+
+
+### Discovering blog pages
 
 [The tutorial](https://nextjs.org/learn/basics/data-fetching/implement-getstaticprops) reads the `posts` directory on the file system for retrieving blog posts. I decided to have a manifest file on the root directory of my `blog` directory. This enables me to have “drafts” (I can have WIP Markdown files on the directory, that are not published), and control the ordering of the blog posts (I could also have used the `date` attribute on the metadata for achieving this).
 
 At first I thought this approach would be more efficient (since we only read a `manifest.json` instead of going through the directory and parsing every blog post in it), but considering that this only affects the build time, and not the user, I might reconsider and use the same approach on the tutorial (I can add a `draft` attribute on each blog post that is a draft).
 
-### Use of 
+### Use of marked and highlightjs
+
+Instead of using remark I've decided to use marked. I also changed the code renderer on marked to render highlighted code, using highlightjs.
+
+I debated on whether I wanted the blog contents to be served in Markdown format and then rendered in HTML in the client, or serve it directly as HTML. I've settled for
 
 
 

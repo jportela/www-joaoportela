@@ -1,3 +1,5 @@
+/* eslint-env jest */
+
 import BlogPost from '../post'
 import MemoryLoader from '../../loaders/memory'
 

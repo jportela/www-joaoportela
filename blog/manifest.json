@@ -1,6 +1,10 @@
 {
   "posts": [
     {
+      "location": "2020/04/creating-my-blog-using-nextjs.md",
+      "slug": "creating-my-blog-using-nextjs"
+    },
+    {
       "location": "2020/04/on-sabbaticals.md",
       "slug": "on-sabbaticals"
     },

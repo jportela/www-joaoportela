@@ -5,13 +5,13 @@
     - Life
 ---
 
-I’m currently on a short sabbatical, after working as a software engineer for the last 8 years. In this post I explain the reasons that led me to decide on taking a sabbatical, and what I'm planning on doing for it.
+I’m currently on a short sabbatical, after working as a software engineer for the last 8 years. In this post, I explain the reasons that led me to decide on taking a sabbatical, and what I'm planning on doing for it.
 
 ### Why take a sabbatical?
 
 Sabbaticals are great! [Don’t just take my word for it](https://www.joelonsoftware.com/2000/03/18/more-on-sabbaticals/).
 
-You might have been working for a long time, and feel you need the free time. Maybe you want to travel, or explore other interests or career opportunities. Those are all very good reasons.
+You might have been working for a long time, and feel you need the free time. Maybe you want to travel or explore other interests or career opportunities. Those are all very good reasons.
 
 In my case, I've been toying with the idea of having a long vacation for the last few years. Four months ago it became real. I started to feel I was not progressing as I wanted on my career. It felt like I was on a moving train, that never stopped, going from one fire to the next without looking at the big picture.
 
@@ -19,7 +19,7 @@ One day, I started brainstorming and planning on what I would do if I didn't hav
 
 ### What do people do on a sabbatical?
 
-A sabbatical is highly personal. In my particular case, I've been feeling the need to improve my craft and fill gaps on my technical knowledge, in order to be more confident on the work I do (I suspect this is fueled by [Imposter's Syndrome](https://www.hanselman.com/blog/ImAPhonyAreYou.aspx), but learning can't hurt). I've decided to structure it on four key areas:
+A sabbatical is highly personal. In my particular case, I've been feeling the need to improve my craft and fill gaps in my technical knowledge, to be more confident in the work I do (I suspect this is fueled by [Imposter's Syndrome](https://www.hanselman.com/blog/ImAPhonyAreYou.aspx), but learning can't hurt). I've decided to structure it in four key areas:
 
   * *Learn*
   * *Build*
@@ -36,7 +36,7 @@ I've started by brainstorming what I wanted to learn about, or what I felt I nee
     * [Rust](https://www.rust-lang.org/)
     * [deno](https://deno.land/)
   * **Frameworks**:
-	  * [Next.js](https://nextjs.org/)
+    * [Next.js](https://nextjs.org/)
     * [Vue.js](https://vuejs.org/)
     * [Blitz.js](https://blitzjs.com/)
     * [Polymer](https://www.polymer-project.org/)
@@ -48,6 +48,7 @@ I've started by brainstorming what I wanted to learn about, or what I felt I nee
   * **Books**:
     * [The Clean Coder](https://www.goodreads.com/book/show/10284614-the-clean-coder)
     * [Clean Code](https://www.goodreads.com/book/show/3735293-clean-code)
+    * [Clean Architecture](https://www.goodreads.com/book/show/18043011-clean-architecture)
     * [Patterns of Enterprise Architecture](https://www.goodreads.com/book/show/70156.Patterns_of_Enterprise_Application_Architecture)
     * [Enterprise Integration Patterns](https://www.goodreads.com/book/show/85012.Enterprise_Integration_Patterns)
     * [Development and Deployment of Online Multiplayer Games](https://www.goodreads.com/en/book/show/36438566)
@@ -85,19 +86,19 @@ I probably won't have the time to cover everything that's on the list, but that'
 
 _**Motivation**: Create. Build your portfolio and online presence. Explore your side projects. Make yourself known for what you build._
 
-I’m happiest when I’m building. That's why I love being a software engineer. *Revamping my personal website and starting this blog* is already a step on that direction. I also have plans for *contributing to open-source* and *creating a new product* (if all goes well, I'll share news about it soon).
+I’m happiest when I’m building. That's why I love being a software engineer. *Revamping my website and starting this blog* is already a step in that direction. I also have plans for *contributing to open-source* and *creating a new product* (if all goes well, I'll share news about it soon).
 
 ### Grow
 
 _**Motivation:** Explore other interests. Get better on everyday things._
 
-These are things that make me happy on my daily life, and that I want to explore more or get better at. I might write about these in this blog, occasionally:
+These are things that make me happy in my daily life, and that I want to explore more or get better at. I might write about these in this blog, occasionally:
 
   * **Cooking** (I'm getting better at it, but there's still a lot I need to learn/practice)
   * **Piano** (I've stopped learning/playing and I want it to be part of my life again)
   * **Fitness** (focused on distance running, strength training to support it and general health)
 
-I also have other two interests that I've given lower priority. It would be great if I get time to explore these, but I prefer to give more attention to the above, than half-heartedly do all:
+I also have two other interests that I've given lower priority. It would be great if I get time to explore these, but I prefer to give more attention to the above than half-heartedly do all of them:
 
   * **Japanese** (I had a few lessons a long time ago, and want to resume it)
   * **Drawing** (I'm terrible at it. I want to get better)
@@ -110,8 +111,8 @@ Play games. Watch TV. Read. Go through a Wikipedia rabbit-hole for two hours. Ha
 
 ### Wrapping up
 
-I’m really excited about this sabbatical (and even more excited about my next career step, as the first Front-End Engineer at [FitBod](https://fitbod.me)). It has already been rewarding to step back from the day to day, have time to catch up with the front-end community and develop this blog.
+I’m very excited about this sabbatical (and even more excited about my next career step, as the first Front-End Engineer at [FitBod](https://fitbod.me)). It has already been rewarding to step back from the day to day, have time to catch up with the front-end community, and develop this blog.
 
-I highly encourage you to take a sabbatical if possible (between jobs, or negotiate it with your employee), specially if you’ve been feeling overwhelmed or unmotivated by your daily job.
+I highly encourage you to take a sabbatical if possible (between jobs, or negotiate it with your employee), especially if you’ve been feeling overwhelmed or unmotivated by your daily job.
 
 I’ve found that a sabbatical for personal development, and planning for it beforehand, were very helpful for me, but don’t feel the need to plan or overthink it. And it doesn’t need to be about learning or self-development. It should be about what you need.

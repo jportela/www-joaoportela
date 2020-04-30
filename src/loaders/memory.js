@@ -1,22 +1,21 @@
 export default class MemoryLoader {
-  constructor() {
+  constructor () {
     this.data = new Map()
   }
 
-  set(filePath, data) {
+  set (filePath, data) {
     this.data.set(filePath, data)
   }
 
-  async load(filePath) {
+  async load (filePath) {
     return this.data.get(filePath)
   }
 
-  async loadFromBasePath(filePath) {
+  async loadFromBasePath (filePath) {
     return this.data.get(filePath)
   }
 
-  async loadFromBlogPath(filePath) {
+  async loadFromBlogPath (filePath) {
     return this.data.get(filePath)
   }
-
 }

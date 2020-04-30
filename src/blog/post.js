@@ -1,42 +1,36 @@
-import passthroughProcessor from '../processors/passthrough'
-
 export default class BlogPost {
-  constructor(
+  constructor (
     { location, slug },
     {
       loader,
-      metadataProcessor,
-      contentProcessor = passthroughProcessor,
+      metadataProcessor
     }
   ) {
     this.location = location
     this.slug = slug
     this.loader = loader
     this.metadataProcessor = metadataProcessor
-    this.contentProcessor = contentProcessor
 
     this.reset()
   }
 
-  async load() {
+  async load () {
     const fileContent = await this.loader.loadFromBlogPath(this.location)
-    let rawContent = fileContent
 
     this.reset()
 
     if (typeof this.metadataProcessor === 'function') {
       const processedFile = this.metadataProcessor(fileContent)
       this.metadata = processedFile.data
-      this.notes = this.metadata.notes ? this.contentProcessor(this.metadata.notes) : null
-      this.excerpt = this.contentProcessor(processedFile.excerpt)
-      rawContent = processedFile.content
+      this.notes = this.metadata.notes || null
+      this.excerpt = processedFile.excerpt
+      this.content = processedFile.content
+    } else {
+      this.content = fileContent
     }
-
-    this.content = this.contentProcessor(rawContent)
-
   }
 
-  reset() {
+  reset () {
     this.content = null
     this.excerpt = null
     this.notes = null

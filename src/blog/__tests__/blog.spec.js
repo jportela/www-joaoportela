@@ -1,3 +1,5 @@
+/* eslint-env jest */
+
 import Blog from '../index'
 import MemoryLoader from '../../loaders/memory'
 
@@ -21,7 +23,6 @@ const blog = new Blog({
 beforeEach(async () => {
   await blog.loadManifest(MANIFEST)
 })
-
 
 test('loads all posts from the blog manifest', () => {
   const posts = blog.posts
