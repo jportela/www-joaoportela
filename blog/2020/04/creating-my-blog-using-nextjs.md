@@ -105,6 +105,13 @@ return {
 
 ### A lack of pagination
 
-You might notice that I haven't implemented any pagination yet. It's an UX nightmare! The truth is that I only have 3 articles on the blog, so I don't need any pagination yet. This fits into the Incremental Correctness principle I mentioned previously. The current truth of this blog doesn't demand a pagination yet, which gives me time to focus on other things and release earlier. As a related anecdote, Basecamp was first launched without a billing system, because they knew they had 30 days until they needed one.
+You might notice that I haven't implemented any pagination yet. It's an UX nightmare! The truth is that I only have 3 articles on the blog, so I don't need any pagination yet. This fits into the Incremental Correctness principle I mentioned previously. The current truth of this blog doesn't demand a pagination yet, which gives me time to focus on other things and release earlier. As a related anecdote, Basecamp was first launched without a billing system, because they knew they had 30 days until they needed one. The best part is that I might decide I don’t need to decide on what kind of pagination I need to implement, until I need it. For example, is it better to simply show 5 posts per page? Or remove the excerpt and just show the titles? Or separate by tags, or by year?
+
+### A note on Typescript and CSS
+
+I’ve gone with JavaScript and CSS Modules, because that was the fastest and works fine for this use case (small codebase, one developer). I started to feel the itch for Typescript when I was defining what a `processor` and `loader` were (I like to start by defining the `interface`, to find the common traits and stick to a common contract).
+
+As for CSS, I’ve been reading a lot of good arguments for using CSS-in-JS. Traditionally, this is something I’ve been frowning upon, as I always defended that Styling is a concern that should be separated from HTML and Javascript. However, with the Component becoming a unit of UI, Styling starts to become a part of it.
+
 
  
