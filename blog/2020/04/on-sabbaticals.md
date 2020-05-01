@@ -1,6 +1,6 @@
 ---
   title: On Sabbaticals
-  date: "2020-04-27"
+  date: "2020-04-30"
   tags:
     - Life
 ---
