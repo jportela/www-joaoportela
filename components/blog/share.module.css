@@ -1,0 +1,14 @@
+.share {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.share svg {
+  width: 1.5em;
+  margin-right: 1em;
+  fill: var(--link-color)
+}
+
+.share:hover svg {
+  fill: var(--link-hover-color)
+}

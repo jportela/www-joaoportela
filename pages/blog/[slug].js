@@ -1,3 +1,6 @@
+import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
+
 import Blog from '../../src/blog'
 import FileLoader from '../../src/loaders/file'
 import grayMatterProcessor from '../../src/processors/gray-matter'
@@ -5,31 +8,30 @@ import markdownProcessor from '../../src/processors/markdown'
 import BlogMarkdown from '../../components/blog/markdown'
 import BlogLicense from '../../components/blog/license'
 import BlogHeader from '../../components/blog/header'
-import NextSeo from 'next-seo'
-import { useRouter } from 'next/router'
+import BlogShare from '../../components/blog/share'
 
 // TODO: move this to an env variable
 const baseUrl = 'https://www.joaoportela.com'
 
 export default function BlogPost ({ content, metadata, notes }) {
   const router = useRouter()
+  const pageAbsoluteUrl = `${baseUrl}${router.asPath}`
+
   return (
     <article>
 
-      <NextSeo
+      {<NextSeo
         title={metadata.title}
-        description={metadata.excerpt}
         openGraph={{
-          url: `${baseUrl}/${router.pathname}`,
+          url: pageAbsoluteUrl,
           title: metadata.title,
-          description: metadata.excerpt,
           site_name: `João Portela's Blog`,
         }}
         twitter={{
           handle: '@joaoppcportela',
           cardType: 'summary',
         }}
-      />
+      />}
 
       <BlogHeader
         title={metadata.title}
@@ -39,6 +41,8 @@ export default function BlogPost ({ content, metadata, notes }) {
       />
 
       <BlogMarkdown content={content} />
+
+      <BlogShare title={metadata.title} url={pageAbsoluteUrl}/>
 
       <BlogLicense />
 
