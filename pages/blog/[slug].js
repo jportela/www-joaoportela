@@ -5,10 +5,31 @@ import markdownProcessor from '../../src/processors/markdown'
 import BlogMarkdown from '../../components/blog/markdown'
 import BlogLicense from '../../components/blog/license'
 import BlogHeader from '../../components/blog/header'
+import NextSeo from 'next-seo'
+import { useRouter } from 'next/router'
+
+// TODO: move this to an env variable
+const baseUrl = 'https://www.joaoportela.com'
 
 export default function BlogPost ({ content, metadata, notes }) {
+  const router = useRouter()
   return (
     <article>
+
+      <NextSeo
+        title={metadata.title}
+        description={metadata.excerpt}
+        openGraph={{
+          url: `${baseUrl}/${router.pathname}`,
+          title: metadata.title,
+          description: metadata.excerpt,
+          site_name: `João Portela's Blog`,
+        }}
+        twitter={{
+          handle: '@joaoppcportela',
+          cardType: 'summary',
+        }}
+      />
 
       <BlogHeader
         title={metadata.title}
