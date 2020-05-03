@@ -33,6 +33,7 @@ export default function ProfileContact () {
     <li className={styles.item} key={`contact-${i}`}>
       <a className={styles.icon} href={contact.href} title={contact.description}>
         <contact.Icon />
+        <span className={styles.description}>{contact.description}</span>
       </a>
     </li>
   ))

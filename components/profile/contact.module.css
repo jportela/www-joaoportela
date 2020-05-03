@@ -28,3 +28,7 @@
 .icon:hover > svg {
   fill: var(--link-hover-color);
 }
+
+.description {
+  display: none;
+}
