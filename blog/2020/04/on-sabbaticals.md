@@ -3,6 +3,7 @@
   date: "2020-04-30"
   tags:
     - Life
+    - Craft
 ---
 
 I’m currently on a short sabbatical, after working as a software engineer for the last 8 years. In this post, I explain the reasons that led me to decide on taking a sabbatical, and what I'm planning on doing for it.
@@ -66,6 +67,7 @@ I've started by brainstorming what I wanted to learn about, or what I felt I nee
     * Headless CMS
     * Feature Flags
     * [Storybook](https://storybook.js.org/)
+    * [GraphQL](https://graphql.org/)
   * **Testing Frameworks**:
     * [Cypress](https://www.cypress.io/)
     * [Loki](https://loki.js.org/)
@@ -74,6 +76,7 @@ I've started by brainstorming what I wanted to learn about, or what I felt I nee
     * [Terraform](https://www.terraform.io/)
     * [GoCD](https://www.gocd.org/)
     * [GCP](https://cloud.google.com/)
+    * [Jamstack](https://jamstack.org/)
   * **Tools**:
     * [VS Code](https://code.visualstudio.com/)
     * [iTerm2](https://www.iterm2.com/)
@@ -111,7 +114,7 @@ Play games. Watch TV. Read. Go through a Wikipedia rabbit-hole for two hours. Ha
 
 ### Wrapping up
 
-I’m very excited about this sabbatical (and even more excited about my next career step, as the first Front-End Engineer at [FitBod](https://fitbod.me)). It has already been rewarding to step back from the day to day, have time to catch up with the front-end community, and develop this blog.
+I’m very excited about this sabbatical! It has already been rewarding to step back from the day to day, have time to catch up with the front-end community, and develop this blog.
 
 I highly encourage you to take a sabbatical if possible (between jobs, or negotiate it with your employee), especially if you’ve been feeling overwhelmed or unmotivated by your daily job.
 

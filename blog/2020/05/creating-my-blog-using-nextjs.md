@@ -22,7 +22,7 @@ I knew that my website and blog was going to be static, without dynamic content 
 
 `React` and `Static` are almost opposite in semantics. A few years ago I would have defended using plain HTML for your static website, as [React](https://reactjs.org/) is intended for reactive applications. While React was built (and it's really good) at supporting that use case, its declarative, component-based architecture makes it easier to reason and structure your website into small reusable components.
 
-React also became quite good at generating static HTML pages, that can be delivered right at the [Edge](https://en.m.wikipedia.org/wiki/Edge_computing), next to the users, via a [CDN](https://en.m.wikipedia.org/wiki/Content_delivery_network). Frameworks such as [Gatsby.js](https://gatsbyjs.com) and [Next.js](https://nextjs.com) make this setup and workflow easy, providing an accelerated development experience.
+React also became quite good at generating static HTML pages, that can be delivered right at the [Edge](https://en.m.wikipedia.org/wiki/Edge_computing), next to the users, via a [CDN](https://en.m.wikipedia.org/wiki/Content_delivery_network). Frameworks such as [Gatsby](https://gatsbyjs.com) and [Next.js](https://nextjs.com) make this setup and workflow easy, providing an accelerated development experience.
 
 There's nothing wrong with using plain HTML/CSS/JS, or any other tool for your website and blog. Just go with the tool that will better accomplish your goals, whatever they might be.
 
@@ -57,7 +57,7 @@ At first, I thought this approach would be more efficient (since we only read a 
 
 ### Use of marked and highlightjs
 
-Instead of using [`remark`](https://github.com/gnab/remark) (which is used by the Next.js tutorial), I've decided to use [`marked`](https://github.com/markedjs/marked). I also [changed the code renderer](https://github.com/jportela/www-joaoportela/blob/89fd78b813fd5f46f898dff00ce6cf6522c58db0/src/processors/markdown.js) on `marked` to render highlighted code, using [`highlight.js`](https://highlightjs.org/). There was no particular reason for me to choose `marked`. I chose it because I started working on this blog before the tutorial was released, and `marked` was the first option that I researched.
+Instead of using [`remark`](https://github.com/remarkjs/remark) (which is used by the Next.js tutorial), I've decided to use [`marked`](https://github.com/markedjs/marked). I also [changed the code renderer](https://github.com/jportela/www-joaoportela/blob/89fd78b813fd5f46f898dff00ce6cf6522c58db0/src/processors/markdown.js) on `marked` to render highlighted code, using [`highlight.js`](https://highlightjs.org/). There was no particular reason for me to choose `marked`. I chose it because I started working on this blog before the tutorial was released, and `marked` was the first option that I researched.
 
 I debated on whether I wanted the blog contents to be served in Markdown format and then rendered in HTML in the client, or serve it directly as HTML. With static generation that produces no difference in the HTML output, but when navigating between pages in the client, it will.
 
