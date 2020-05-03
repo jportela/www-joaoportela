@@ -1,6 +1,6 @@
 ---
   title: Creating my blog using Next.js
-  date: "2020-05-01"
+  date: "2020-05-03"
   tags:
     - Next.js
 ---

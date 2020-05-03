@@ -1,6 +1,7 @@
 .share {
   display: flex;
   justify-content: flex-end;
+  margin-top: 3em;
 }
 
 .share svg {

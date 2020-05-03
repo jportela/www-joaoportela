@@ -5,6 +5,8 @@
   --link-color: #298CE7;
   --link-hover-color: #195388;
   --secondary-txt-color: #686868;
+  --code-bg-color: #eee;
+  --blockquote-border-color: #ccc;
 }
 
 html {
@@ -15,7 +17,7 @@ html {
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background: var(--main-bg-color);
   color: var(--main-txt-color);
   margin: 0;
@@ -48,14 +50,22 @@ a:hover {
   text-decoration: underline;
 }
 
+blockquote {
+  background: var(--code-bg-color);
+  padding: 1em;
+  border-left: 5px solid var(--blockquote-border-color);
+  font-style: italic;
+}
+
 code {
-  background: #eee;
+  background: var(--code-bg-color);
   padding: 0.2em;
 }
 
 .hljs {
   line-height: 1.5em;
   padding: 1em;
+  font-size: 1.1em;
 }
 
 .hljs code {
@@ -78,7 +88,7 @@ code {
 }
 
 .content {
-  padding: 0 0 0 50px;
+  padding: 0 0 0 35px;
   width: 850px;
   font-size: 1.1em;
   line-height: 1.8em;
