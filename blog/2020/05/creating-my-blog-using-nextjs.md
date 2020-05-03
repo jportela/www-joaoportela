@@ -69,11 +69,12 @@ To accomplish this, you make use of `getStaticProps`:
 // this will fetch the raw markdown content, for later processing
 // by the React component
 async function getStaticProps() {
-const rawContent = await getContent()
+  const rawContent = await getContent()
 
-return {
-  props: {
-    content: rawContent
+  return {
+    props: {
+      content: rawContent,
+    }
   }
 }
 
@@ -91,11 +92,12 @@ To render the HTML in the client (the second option), you can do the following:
 ```js
 // this will fetch the already processed HTML content
 async function getStaticProps() {
-const content = processMarkdown(await getContent())
+  const content = processMarkdown(await getContent())
 
-return {
-  props: {
-    content,
+  return {
+    props: {
+      content,
+    }
   }
 }
 ```

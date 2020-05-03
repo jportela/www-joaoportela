@@ -20,18 +20,18 @@ export default function BlogPost ({ content, metadata, notes }) {
   return (
     <article>
 
-      {<NextSeo
+      <NextSeo
         title={metadata.title}
         openGraph={{
           url: pageAbsoluteUrl,
           title: metadata.title,
-          site_name: `João Portela's Blog`,
+          site_name: 'João Portela\'s Blog'
         }}
         twitter={{
           handle: '@joaoppcportela',
-          cardType: 'summary',
+          cardType: 'summary'
         }}
-      />}
+      />
 
       <BlogHeader
         title={metadata.title}
@@ -42,7 +42,7 @@ export default function BlogPost ({ content, metadata, notes }) {
 
       <BlogMarkdown content={content} />
 
-      <BlogShare title={metadata.title} url={pageAbsoluteUrl}/>
+      <BlogShare title={metadata.title} url={pageAbsoluteUrl} />
 
       <BlogLicense />
 
