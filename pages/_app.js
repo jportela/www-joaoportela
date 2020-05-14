@@ -21,7 +21,7 @@ export default function MyApp ({ Component, pageProps }) {
         <meta name='description' content='I’m João, a Software Engineer currently living in Porto, Portugal. I’m passionate about building well crafted, user centered experiences.' />
 
         <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap' rel='stylesheet' />
-        <script async defer data-domain='joaoportela.com' src='https://plausible.io/js/plausible.js' />
+        <script data-goatcounter="https://joaoportela.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
       </Head>
 
       <div className='page'>
