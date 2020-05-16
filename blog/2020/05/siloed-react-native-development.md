@@ -1,7 +1,7 @@
 
 
 ---
-  title: Siloed React Native Development with Expo and Storybook
+  title: Developing React Native components in isolation with Expo and Storybook
   date: "2020-05-11"
   tags:
     - React Native
@@ -10,7 +10,17 @@
     - Monorepo
 ---
 
-Separating the UI components from the application logic is a good practice, as it promotes a clear separation of concerns, providing easier testing, maintainability and code reuse. By taking advantage of Yarn Workspaces, this boundary can be set even further, by separating the components and the application into different packages. Eventually, we can have multiple applications inside the same repository (as in a monorepo), all using the same component library. This component library, becomes the source of truth for the Design System of your applications. The component library can then be developed in isolation, with components being developed and tested (both manually and automatically) by using a tool such as Storybook, which finally allows for publishing of the Design System to the web, for other developers and designers to review and iterate on.
+### Developing Components in Isolation
+
+Separating the UI components from the application logic promotes a clear separation of concerns, providing easier testing, maintainability and code reuse.
+
+The boundary can be set further if we separate them into different packages. By using a monorepo we take advantage of easier linking, atomic commits (making all changes in one go, instead of having to do several version bumps across different repositories for just one change) and better testing. 
+
+Eventually, we can have multiple applications inside the same repository (as in a monorepo), all using the same component library. This component library, then becomes the source of truth for the Design System of your applications.
+
+The component library can then be developed in isolation, with components being developed and tested (both manually and automatically) by using a tool such as Storybook, which finally allows for publishing of the Design System to the web, for developers, designers or other stakeholders to review and iterate on.
+
+This workflow has been in use with success for a while now, [by different companies](https://storybook.js.org/use-cases/).
 
 However, setting this up isn't as easy as it should be. I've been using Expo for a side project and spent almost a week battling bugs and Webpack config issues, trying to get this setup to work.
 
@@ -18,9 +28,12 @@ I was finally able to get it working (TL;DR, check https://github.com/jportela/e
 
 ### Starting with Yarn Workspaces
 
-Yarn Workspaces enables splitting a project into multiple packages, that all live under the same repository (the monorepo). To set it up, create a `package.json` with the following content:
+[Yarn Workspaces](https://classic.yarnpkg.com/en/docs/workspaces/) enables the split of a project into multiple packages, that all live under the same repository (the monorepo).
+
+To set it up, create a `package.json` with the following content:
 
 ```js
+// /package.json
 {
   "private": true,
   "workspaces": [
@@ -29,9 +42,9 @@ Yarn Workspaces enables splitting a project into multiple packages, that all liv
 }
 ```
 
-The `workspaces` field in this example is configured so that packages all live inside a `packages` directory (you can change this to another parent directory, or even specify a list of directories), so let's create it:
+The `workspaces` field in this example is configured so that packages all live inside a `packages` directory (you can change this to another parent directory, or even a specific list of directories), so let's create it:
 
-```bash
+```
 mkdir packages
 ```
 
@@ -39,35 +52,35 @@ mkdir packages
 
 Make sure you have the `expo-cli` installed:
 
-```bash
+```
 yarn global add expo-cli
 ```
 
 And create an Expo project. We'll call it `app` for this example:
 
-```bash
-cd packages/
-expo init app
+```
+expo init packages/app
 ```
 
 **Note:** Remember to remove the `.git/` directory under `app/`, since you'll want to commit the root of your monorepo. You'll also need to remove `node_modules` and `yarn.lock`:
 
-```bash
-cd app/
+```
+cd packages/app/
 rm -rf .git/ node_modules/
 rm yarn.lock
 ```
 
-Next we need to make sure the package has a name and a version. Here I'm creating a scoped package (TODO: add link) `@my`, which allows me to import all my packages using an instantly recognizable scope. Edit your `packages/app/package.json`
+Next we need to make sure the package has a name and a version. Here I'm creating a scoped package `@my`, which allows me to import all the packages in the monorepo using an instantly recognizable scope. Edit your `packages/app/package.json`:
 
 ```js
+// /packages/app/package.json
   "name": "@my/app",
   "version": "1.0.0",
 ```
 
 ### Setting up Expo to play nicely with Yarn Workspaces
 
-By default Expo doesn't work well with Yarn Workspaces. The following steps are needed for them to work: https://github.com/expo/expo/tree/master/packages/expo-yarn-workspaces
+By default Expo doesn't work well with Yarn Workspaces. [The following steps](https://github.com/expo/expo/tree/master/packages/expo-yarn-workspaces) are needed for them to work:
 
 Install `expo-yarn-workspaces` on your `app/`:
 
@@ -75,21 +88,28 @@ Install `expo-yarn-workspaces` on your `app/`:
 yarn add -D expo-yarn-workspaces
 ```
 
-Add the following script (under the `scripts:` property) to the `app/package.json`:
+Add the following script (under the `scripts:` property) to `app/package.json`:
 
 ```js
+// /packages/app/package.json
+...
     "postinstall": "expo-yarn-workspaces postinstall" 
+...
 ```
 
 And change the `main` entrypoint, to one that will be generated by `expo-yarn-workspaces` (you can choose whatever file name/location for this. Here I've chosen to generate it to the `.expo` directory, since it won't be committed to Git):
 
 ```js
+// /packages/app/package.json
+...
   "main": ".expo/__generated__/AppEntry.js",
+...
 ```
 
 Create a `metro.config.js` file, that contains the following configuration:
 
-```
+```js
+// /packages/app/metro.config.js
 const { createMetroConfiguration } = require('expo-yarn-workspaces');
 
 module.exports = createMetroConfiguration(__dirname);
@@ -98,6 +118,7 @@ module.exports = createMetroConfiguration(__dirname);
 And finally you need to declare that you want to use that custom Metro configuration on `app.json`:
 
 ```js
+// /packages/app/app.json
 "packagerOpts": {
   "config": "metro.config.js"
 }
@@ -105,20 +126,60 @@ And finally you need to declare that you want to use that custom Metro configura
 
 Run `yarn postinstall`. And finally test if everything is working properly:
 
-```bash
+```
 expo web
 ```
 
-### Setting up the shared library
+### Setting up the shared UI library
 
 Now that we have an application up and running, we'll setup the package where the shared UI components will live. We'll call it `ui`:
 
-```bash
-cd .. # go to packages
-mkdir ui
-cd ui/
-yarn init -y
 ```
+cd .. # go to packages/
+mkdir ui
+```
+
+Add create the `package.json` for it:
+
+```js
+// /packages/ui/package.json
+{
+  "name": "@my/ui",
+  "version": "1.0.0",
+  "main": "src/index.tsx"
+}
+```
+
+Create a component for testing purposes (on the example, I've created a `PrimaryButton` on `src/buttons/primary.tsx`):
+
+```js
+// /packages/ui/src/buttons/primary.tsx
+import React from 'react';
+import { Button } from 'react-native';
+
+interface ButtonProps {
+  title: string;
+  onPress?: () => void;
+}
+
+const emptyFunction = () => {};
+
+export default function PrimaryButton({
+  title,
+  onPress
+}: ButtonProps) {
+  return (
+    <Button
+      title={title}
+      onPress={onPress || emptyFunction}
+      color="lightsalmon"
+    />
+  );
+}
+
+```
+
+### Import @my/ui 
 
 
 npx -p @storybook/cli sb init --type react
