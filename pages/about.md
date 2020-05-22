@@ -6,7 +6,7 @@ I'm currently [enjoying a short sabbatical](/blog/on-sabbaticals), while I'm bet
 
 I've been told I go way too deep when learning and exploring my personal hobbies. I'd love to chat with you about the following:
 
-  * 🏃‍♂️[Running](https://www.strava.com/athletes/2873801)
+  * 🏃‍♂️[Running](https://www.strava.com/athletes/joaoportela)
   * 📖[Reading](https://goodreads.com/jportela)
   * 🥘Cooking
   * 🎹Piano

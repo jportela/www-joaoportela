@@ -1,3 +1,5 @@
+import path from 'path'
+
 export default class BlogPost {
   constructor (
     { location, slug },
@@ -35,5 +37,15 @@ export default class BlogPost {
     this.excerpt = null
     this.notes = null
     this.metadata = {}
+  }
+
+  getAssetLocation() {
+    if (!this.location) {
+      return null
+    }
+
+    const dirs = path.normalize(this.location).split(path.sep)
+
+    return path.join('/assets/blog', ...dirs.slice(0, dirs.length))
   }
 }

@@ -13,7 +13,7 @@ import BlogShare from '../../components/blog/share'
 // TODO: move this to an env variable
 const baseUrl = 'https://www.joaoportela.com'
 
-export default function BlogPost ({ content, metadata, notes }) {
+export default function BlogPost ({ content, metadata, notes, assetLocation }) {
   const router = useRouter()
   const pageAbsoluteUrl = `${baseUrl}${router.asPath}`
 
@@ -40,7 +40,7 @@ export default function BlogPost ({ content, metadata, notes }) {
         notes={notes}
       />
 
-      <BlogMarkdown content={content} />
+      <BlogMarkdown content={content} assetLocation={assetLocation} />
 
       <BlogShare title={metadata.title} url={pageAbsoluteUrl} />
 
@@ -88,7 +88,8 @@ export async function getStaticProps (context) {
     props: {
       metadata: post.metadata,
       content: post.content,
-      notes: post.notes
+      notes: post.notes,
+      assetLocation: post.getAssetLocation(),
     }
   }
 }

@@ -6,7 +6,7 @@ import Navigation from '../components/navigation'
 import Footer from '../components/footer'
 import Main from '../components/main'
 
-import 'highlight.js/styles/tomorrow-night.css'
+import 'highlight.js/styles/night-owl.css'
 import '../styles/global.css'
 
 export default function MyApp ({ Component, pageProps }) {
@@ -17,6 +17,7 @@ export default function MyApp ({ Component, pageProps }) {
       <Head>
         <title>João Portela</title>
         <meta charSet='utf-8' />
+        <meta name='viewport' content="width=device-width, initial-scale=1" />
         <meta name='author' content='João Portela' />
         <meta name='description' content='I’m João, a Software Engineer currently living in Porto, Portugal. I’m passionate about building well crafted, user centered experiences.' />
 

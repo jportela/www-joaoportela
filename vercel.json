@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/redux-saga-persistence", "destination": "https://redux-saga-persistence.now.sh/" }
+  ]
+}
