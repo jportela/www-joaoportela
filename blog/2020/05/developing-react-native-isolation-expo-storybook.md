@@ -1,12 +1,12 @@
 ---
-  title: Developing React Native components in isolation with Expo and Storybook
-  description: How to develop your React Native UI components in isolation in a monorepo setup, with Storybook, Expo and Yarn Workspaces
-  date: "2020-05-22"
-  tags:
-    - React Native
-    - Expo
-    - Storybook
-    - Monorepo
+title: Developing React Native components in isolation with Expo and Storybook
+description: How to develop your React Native UI components in isolation in a monorepo setup, with Storybook, Expo and Yarn Workspaces
+date: '2020-05-22'
+tags:
+  - React Native
+  - Expo
+  - Storybook
+  - Monorepo
 ---
 
 Separating the UI components from the application logic promotes a clear separation of concerns, providing easier testing, maintainability and code reuse.
@@ -94,7 +94,7 @@ Add the following script (under the `scripts:` property) to `app/package.json`:
 ```js
 // /packages/app/package.json
 ...
-    "postinstall": "expo-yarn-workspaces postinstall" 
+    "postinstall": "expo-yarn-workspaces postinstall"
 ...
 ```
 
@@ -111,9 +111,9 @@ Create a `metro.config.js` file, that contains the following configuration:
 
 ```js
 // /packages/app/metro.config.js
-const { createMetroConfiguration } = require('expo-yarn-workspaces');
+const { createMetroConfiguration } = require('expo-yarn-workspaces')
 
-module.exports = createMetroConfiguration(__dirname);
+module.exports = createMetroConfiguration(__dirname)
 ```
 
 And finally you need to declare that you want to use that custom Metro configuration on `app.json`:
@@ -157,31 +157,26 @@ Create a component for testing purposes (on the example, I've created a `Primary
 
 ```js
 // /packages/ui/src/buttons/primary.tsx
-import React from 'react';
-import { Button } from 'react-native';
+import React from 'react'
+import { Button } from 'react-native'
 
 interface ButtonProps {
   title: string;
   onPress?: () => void;
 }
 
-const emptyFunction = () => {};
+const emptyFunction = () => {}
 
-export default function PrimaryButton({
-  title,
-  onPress
-}: ButtonProps) {
+export default function PrimaryButton({ title, onPress }: ButtonProps) {
   return (
     <Button
       title={title}
       onPress={onPress || emptyFunction}
       color="lightsalmon"
     />
-  );
+  )
 }
-
 ```
-
 
 ### Adding Storybook for testing the component
 
@@ -210,8 +205,7 @@ Finally we'll add the `.storybook/main.js` configuration file, to specify where 
 
 module.exports = {
   stories: ['../src/**/*.stories.tsx'],
-};
-
+}
 ```
 
 Notice that with this configuration it's possible to locate the stories in the same directories as the components. That's intentional, as it promotes easier maintainability (ie: if the story is right there, it's easier to update it when the component changes) and documentation for developers (as they provide examples of usage).
@@ -229,15 +223,14 @@ And then add the following `webpack.config.js`, that Storybook will use:
 
 ```js
 // /packages/ui/.storybook/webpack.config.js
-const { resolve } = require("path");
-const { withUnimodules } = require("@expo/webpack-config/addons");
+const { resolve } = require('path')
+const { withUnimodules } = require('@expo/webpack-config/addons')
 
 module.exports = ({ config }) => {
   return withUnimodules(config, {
-    projectRoot: resolve(__dirname, "../")
-  });
-};
-
+    projectRoot: resolve(__dirname, '../'),
+  })
+}
 ```
 
 ### Add the Storybook script and try it out
@@ -260,8 +253,7 @@ yarn storybook
 
 You should see the following:
 
-![Example running in Storybook](storybook.png "Fig. 1. You can now develop your UI in isolation, outside the app!")
-
+![Example running in Storybook](storybook.png 'Fig. 1. You can now develop your UI in isolation, outside the app!')
 
 ### Import the component in the app
 
@@ -280,8 +272,8 @@ Then import it on `App.tsx`:
 
 ```jsx
 // /packages/app/App.tsx
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 import { PrimaryButton } from '@my/ui'
 
 export default function App() {
@@ -290,7 +282,7 @@ export default function App() {
       <Text>Open up App.tsx to start working on your app!</Text>
       <PrimaryButton title="Hello, world!" />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -300,7 +292,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
 ```
 
 And finally run the example using expo:

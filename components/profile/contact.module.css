@@ -3,7 +3,6 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 100%;
   justify-content: space-between;
 }
 
@@ -15,9 +14,9 @@
 
 .icon {
   display: block;
-  padding: 10px;
-  width: 52px;
-  height: 52px;
+  padding: 0 1em 0 0;
+  width: 42px;
+  height: 42px;
 }
 
 .icon > svg {

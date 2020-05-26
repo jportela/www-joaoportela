@@ -1,3 +1,3 @@
-export default function passthroughProcessor (content) {
+export default function passthroughProcessor(content) {
   return content
 }

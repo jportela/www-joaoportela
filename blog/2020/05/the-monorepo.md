@@ -1,8 +1,8 @@
 ---
-  title: The Monorepo
-  date: "2020-05-05"
-  tags:
-    - Software Development
+title: The Monorepo
+date: '2020-05-05'
+tags:
+  - Software Development
 ---
 
 There has been a generalized interest in monolithic architectures, after a rise on distributed architectures. In this post I explore the monorepo, as a way to aggregate and share code in a single repository, and why it's a better approach than breaking the code in separate, distributed, packages, in a JavaScript environment.
@@ -19,4 +19,4 @@ But that's not what happens in practice, is it?
 
 ### The Maintenance Icarus
 
-[left-pad](https://www.davidhaney.io/npm-left-pad-have-we-forgotten-how-to-program/) showed how depending on something that can be out of control is bad. It's impossible to properly evaluate 
+[left-pad](https://www.davidhaney.io/npm-left-pad-have-we-forgotten-how-to-program/) showed how depending on something that can be out of control is bad. It's impossible to properly evaluate

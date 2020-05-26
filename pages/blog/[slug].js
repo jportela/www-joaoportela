@@ -13,23 +13,22 @@ import BlogShare from '../../components/blog/share'
 // TODO: move this to an env variable
 const baseUrl = 'https://www.joaoportela.com'
 
-export default function BlogPost ({ content, metadata, notes, assetLocation }) {
+export default function BlogPost({ content, metadata, notes }) {
   const router = useRouter()
   const pageAbsoluteUrl = `${baseUrl}${router.asPath}`
 
   return (
     <article>
-
       <NextSeo
         title={metadata.title}
         openGraph={{
           url: pageAbsoluteUrl,
           title: metadata.title,
-          site_name: 'João Portela\'s Blog'
+          site_name: "João Portela's Blog",
         }}
         twitter={{
           handle: '@joaoppcportela',
-          cardType: 'summary'
+          cardType: 'summary',
         }}
       />
 
@@ -40,43 +39,41 @@ export default function BlogPost ({ content, metadata, notes, assetLocation }) {
         notes={notes}
       />
 
-      <BlogMarkdown content={content} assetLocation={assetLocation} />
+      <BlogMarkdown content={content} />
 
       <BlogShare title={metadata.title} url={pageAbsoluteUrl} />
 
       <BlogLicense />
-
     </article>
   )
 }
 
-export async function getStaticPaths () {
+export async function getStaticPaths() {
   const fileLoader = new FileLoader()
   const blog = new Blog({
     loader: fileLoader,
-    ignoreContent: true,
-    ignoreMetadata: true
+    contentProcessor: (content) => content,
   })
 
   await blog.loadManifest('manifest.json')
 
-  const paths = blog.posts.map(post => ({
-    params: { slug: post.slug }
+  const paths = blog.posts.map((post) => ({
+    params: { slug: post.slug },
   }))
 
   return {
     paths,
-    fallback: false
+    fallback: false,
   }
 }
 
-export async function getStaticProps (context) {
+export async function getStaticProps(context) {
   const slug = context.params.slug
   const fileLoader = new FileLoader()
   const blog = new Blog({
     loader: fileLoader,
     metadataProcessor: grayMatterProcessor,
-    contentProcessor: markdownProcessor
+    contentProcessor: markdownProcessor,
   })
   await blog.loadManifest('manifest.json')
 
@@ -89,7 +86,6 @@ export async function getStaticProps (context) {
       metadata: post.metadata,
       content: post.content,
       notes: post.notes,
-      assetLocation: post.getAssetLocation(),
-    }
+    },
   }
 }

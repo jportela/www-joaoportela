@@ -6,9 +6,9 @@ import MemoryLoader from '../../loaders/memory'
 const mockManifest = JSON.stringify({
   posts: [
     {
-      location: '2020/04/creating-my-personal-blog.mdx'
-    }
-  ]
+      location: '2020/04/creating-my-personal-blog.mdx',
+    },
+  ],
 })
 
 const MANIFEST = 'manifest'
@@ -17,7 +17,7 @@ const loader = new MemoryLoader()
 loader.set(MANIFEST, mockManifest)
 
 const blog = new Blog({
-  loader
+  loader,
 })
 
 beforeEach(async () => {

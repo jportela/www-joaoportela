@@ -6,8 +6,8 @@ import BlogLink from '../../components/blog/link'
 import styles from './blog.module.css'
 import markdownProcessor from '../../src/processors/markdown'
 
-export default function BlogPage ({ posts }) {
-  const pages = posts.map(post => {
+export default function BlogPage({ posts }) {
+  const pages = posts.map((post) => {
     return (
       <li key={`post-${post.slug}`}>
         <BlogLink
@@ -22,35 +22,34 @@ export default function BlogPage ({ posts }) {
   return (
     <div>
       <h2>Blog</h2>
-      <ul className={styles.posts}>
-        {pages}
-      </ul>
+      <ul className={styles.posts}>{pages}</ul>
     </div>
   )
 }
 
-export async function getStaticProps () {
+export async function getStaticProps() {
   const fileLoader = new FileLoader()
   const blog = new Blog({
     loader: fileLoader,
     metadataProcessor: grayMatterProcessor,
     contentProcessor: markdownProcessor,
-    ignoreContent: true
   })
 
   await blog.loadManifest('manifest.json')
-  const posts = await Promise.all(blog.posts.map(async (post) => {
-    await post.load()
-    return {
-      slug: post.slug,
-      metadata: post.metadata,
-      excerpt: post.excerpt
-    }
-  }))
+  const posts = await Promise.all(
+    blog.posts.map(async (post) => {
+      await post.load()
+      return {
+        slug: post.slug,
+        metadata: post.metadata,
+        excerpt: post.excerpt,
+      }
+    }),
+  )
 
   return {
     props: {
-      posts
-    }
+      posts,
+    },
   }
 }

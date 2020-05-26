@@ -1,18 +1,21 @@
 :root {
   --main-bg-color: white;
-  --main-txt-color: #2E2E2E;
-  --main-header-color: #0D4477;
-  --link-color: #1778D3;
-  --link-hover-color: #0D4477;
+  --main-txt-color: #2e2e2e;
+  --main-header-color: #f08a4b;
+  --secondary-header-color: #f08a4b;
+  --link-color: #008cc5;
+  --link-hover-color: #f08a4b;
   --secondary-txt-color: #686868;
-  --code-bg-color: #eee;
-  --blockquote-border-color: #ccc;
+  --code-bg-color: floralwhite;
+  --blockquote-border-color: #f08a4b;
 }
 
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -25,13 +28,14 @@ body {
   line-height: 1.5em;
 }
 
-h1, h2, h3, strong {
+h2,
+h3,
+strong {
   color: var(--main-header-color);
 }
 
 h2 {
   font-size: 2em;
-  margin: 2em 0;
   line-height: 1.5em;
 }
 
@@ -81,53 +85,13 @@ code {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 4em 0 1em 0;
+  padding: 4em 1em 1em 1em;
 }
 
-.page {
-  display: flex;
-  flex: 1;
-  width: 100%;
-}
-
-.content {
-  padding: 0 0 0 35px;
-  width: 850px;
-  font-size: 1.1em;
-  line-height: 1.8em;
-}
-
-@media screen and (max-width: 1200px) {
-  .page {
-    margin: 0 auto;
-    flex-direction: column;
-  }
-
-  .content {
-    padding: 0;
-  }
-
-  .container {
-    padding: 1em 0;
-    width: 850px;
-  }
-}
-
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 800px) {
   blockquote {
     margin: 0;
   }
-
-  .content {
-    margin: 0;
-    width: 100%;
-  }
-  .container {
-    width: 100%;
-    margin: 0;
-    padding: 1em;
-  }
 }
-

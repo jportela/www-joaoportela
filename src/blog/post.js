@@ -1,22 +1,21 @@
 import path from 'path'
 
 export default class BlogPost {
-  constructor (
+  constructor(
     { location, slug },
-    {
-      loader,
-      metadataProcessor
-    }
+    { loader, metadataProcessor, contentProcessor },
   ) {
     this.location = location
     this.slug = slug
     this.loader = loader
     this.metadataProcessor = metadataProcessor
+    this.contentProcessor = (content) =>
+      contentProcessor(content, this.getAssetLocation())
 
     this.reset()
   }
 
-  async load () {
+  async load() {
     const fileContent = await this.loader.loadFromBlogPath(this.location)
 
     this.reset()
@@ -24,15 +23,17 @@ export default class BlogPost {
     if (typeof this.metadataProcessor === 'function') {
       const processedFile = this.metadataProcessor(fileContent)
       this.metadata = processedFile.data
-      this.notes = this.metadata.notes || null
-      this.excerpt = processedFile.excerpt
-      this.content = processedFile.content
+      this.notes = this.metadata.notes
+        ? this.contentProcessor(this.metadata.notes)
+        : null
+      this.excerpt = this.contentProcessor(processedFile.excerpt)
+      this.content = this.contentProcessor(processedFile.content)
     } else {
-      this.content = fileContent
+      this.content = this.contentProcessor(fileContent)
     }
   }
 
-  reset () {
+  reset() {
     this.content = null
     this.excerpt = null
     this.notes = null
@@ -46,6 +47,6 @@ export default class BlogPost {
 
     const dirs = path.normalize(this.location).split(path.sep)
 
-    return path.join('/assets/blog', ...dirs.slice(0, dirs.length))
+    return path.join('/assets/blog', ...dirs.slice(0, dirs.length - 1))
   }
 }

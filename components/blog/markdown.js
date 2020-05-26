@@ -1,12 +1,9 @@
-import useMarkdown from '../../src/hooks/markdown'
-
-export default function BlogMarkdown ({ content, assetLocation }) {
-  const formattedContent = useMarkdown(content, assetLocation)
-
+export default function BlogMarkdown({ content }) {
   return (
-    <div dangerouslySetInnerHTML={{
-      __html: formattedContent
-    }}
+    <div
+      dangerouslySetInnerHTML={{
+        __html: content,
+      }}
     />
   )
 }

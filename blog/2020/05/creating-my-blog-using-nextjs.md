@@ -1,12 +1,11 @@
 ---
-  title: Creating my blog using Next.js
-  date: "2020-05-03"
-  tags:
-    - Next.js
+title: Creating my blog using Next.js
+date: '2020-05-03'
+tags:
+  - Next.js
 ---
 
 I've decided to kickstart [my sabbatical](/blog/on-sabbaticals) by revamping my website from scratch and creating a blog. In this post, I explain why I created it, and the technical decisions I've made while developing it.
-
 
 ### Motivations and goals
 
@@ -48,12 +47,11 @@ I started building this website by modeling the [UI components](https://github.c
 
 By separating business logic (in this case, the logic related to Blogs and Blog Posts) from the presentational components, it makes the code easier to read, maintain, and test. I also made sure dependencies were properly encapsulated, which are injected into the entities that need them. If I ever want to create a native GUI, or CLI to replace the React components, the logic for blogs and blog posts should stay pretty much untouched, as long as the same interfaces are fulfilled. The same can be said for the logic for retrieving posts (currently using the file system, but I could refactor it easily to use a headless CMS, for example) and for processing Markdown.
 
-
 ### Discovering blog pages
 
 [The tutorial](https://nextjs.org/learn/basics/data-fetching/implement-getstaticprops) retrieves blog posts by reading the `posts` directory on the file system. I decided to have a [manifest file](https://github.com/jportela/www-joaoportela/blob/89fd78b813fd5f46f898dff00ce6cf6522c58db0/blog/manifest.json) on the root directory of my `blog` directory. This enables me to have “drafts” (I can have Markdown files that are still a Work In Progress on the directory, that are not published), and control the ordering of the blog posts (I could also have used the `date` attribute on the metadata to achieve this).
 
-At first, I thought this approach would be more efficient (since we only read a [`manifest.json`](https://github.com/jportela/www-joaoportela/blob/89fd78b813fd5f46f898dff00ce6cf6522c58db0/blog/manifest.json) instead of going through the directory and parsing every blog post in it), but looking back at this choice, I realized that this only affects the build time and not the user’s load time in any way, so I might reconsider and use the same approach on the tutorial (I can add a `draft` attribute on each blog post that is a draft, to filter those out from publishing). 
+At first, I thought this approach would be more efficient (since we only read a [`manifest.json`](https://github.com/jportela/www-joaoportela/blob/89fd78b813fd5f46f898dff00ce6cf6522c58db0/blog/manifest.json) instead of going through the directory and parsing every blog post in it), but looking back at this choice, I realized that this only affects the build time and not the user’s load time in any way, so I might reconsider and use the same approach on the tutorial (I can add a `draft` attribute on each blog post that is a draft, to filter those out from publishing).
 
 ### Use of marked and highlightjs
 
@@ -74,7 +72,7 @@ async function getStaticProps() {
   return {
     props: {
       content: rawContent,
-    }
+    },
   }
 }
 
@@ -84,7 +82,6 @@ async function getStaticProps() {
 function MyComponent({ content }) {
   const htmlContent = processMarkdown(content)
 }
-
 ```
 
 To render the HTML in the client (the second option), you can do the following:
@@ -97,7 +94,7 @@ async function getStaticProps() {
   return {
     props: {
       content,
-    }
+    },
   }
 }
 ```

@@ -1,47 +1,18 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-
 import styles from './navigation.module.css'
+import NavigationLink from './link'
+import ProfileHeader from '../profile/header'
+import ProfileContact from '../profile/contact'
 
-const NAVIGATION = [
-  {
-    href: '/',
-    label: 'Home'
-  },
-  {
-    href: '/blog',
-    label: 'Blog'
-  },
-  {
-    href: '/projects',
-    label: 'Projects'
-  },
-  {
-    href: '/about',
-    label: 'About'
-  }
-]
-
-export default function Navigation () {
-  const router = useRouter()
-  const renderedNavigation = NAVIGATION.map((navigation, i) => {
-    const isCurrentPage = router.pathname === navigation.href
-    return (
-      <li key={`navigation-${i}`}>
-        {isCurrentPage
-          ? navigation.label : (
-            <Link href={navigation.href}>
-              <a>{navigation.label}</a>
-            </Link>
-          )}
-      </li>
-    )
-  })
+export default function Navigation() {
   return (
-    <nav>
-      <ul className={styles.navigationLinks}>
-        {renderedNavigation}
+    <nav className={styles.container}>
+      <ul className={styles.list}>
+        <NavigationLink href="/">
+          <ProfileHeader />
+        </NavigationLink>
+        <NavigationLink href="/blog">Blog</NavigationLink>
       </ul>
+      <ProfileContact />
     </nav>
   )
 }

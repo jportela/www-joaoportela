@@ -11,7 +11,9 @@ const renderer = new marked.Renderer()
 
 renderer.code = function (code, infostring) {
   const language = infostring || 'plaintext'
-  return `<pre class="hljs"><code class="language-${language}">${hljs.highlight(language, code).value}</code></pre>`
+  return `<pre class="hljs"><code class="language-${language}">${
+    hljs.highlight(language, code).value
+  }</code></pre>`
 }
 
 const rawImageRenderer = marked.Renderer.prototype.image.bind(renderer)
@@ -28,12 +30,11 @@ renderer.image = function image(href, title, text) {
 
 marked.setOptions({
   renderer,
-  sanitizer: sanitize
+  sanitizer: sanitize,
 })
 
-export default function markdownProcessor (rawContent, assetLocation) {
+export default function markdownProcessor(rawContent, assetLocation) {
   return marked(rawContent, {
     baseUrl: assetLocation,
   })
 }
-

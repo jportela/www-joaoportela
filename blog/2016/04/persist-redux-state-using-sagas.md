@@ -1,6 +1,6 @@
 ---
 title: Persist Redux State by using Sagas
-date: "2016-04-26"
+date: '2016-04-26'
 tags:
   - React
   - Redux
@@ -17,10 +17,10 @@ This article assumes that you have some `redux` and `redux-saga` knowledge, but 
 
 The persistence mechanism described in this article assumes that you’ll save the whole state to the server (although you can easily select just a subset of it). The save operation follows these requirements:
 
-  * There must be a whitelist of actions (only actions on the whitelist will trigger a save)
-  * Some actions (such as dragging an image) should be debounced, in order to only trigger a save operation to the server after an amount of time
-  * Other actions (such as creating an image) should save immediately
-  * There should be an “unsaved changes” indicator on the UI, that is displayed when a change is first recorded and hidden when a successful save response is received from the server
+- There must be a whitelist of actions (only actions on the whitelist will trigger a save)
+- Some actions (such as dragging an image) should be debounced, in order to only trigger a save operation to the server after an amount of time
+- Other actions (such as creating an image) should save immediately
+- There should be an “unsaved changes” indicator on the UI, that is displayed when a change is first recorded and hidden when a successful save response is received from the server
 
 This article does not explain how to setup sagas or a react/redux project (as there’s already the documentation and countless examples). It does provide a github repository with a complete example for you to check how it was setup and how it plays together with React/Redux: https://github.com/jportela/redux-saga-persistence
 
@@ -29,46 +29,46 @@ This article does not explain how to setup sagas or a react/redux project (as th
 Let’s start by implementing a simple saga that, on all actions, triggers a save immediately to the server:
 
 ```js
-import { call, put, select, take } from 'redux-saga/effects';
-import { serverSave } from '../actions';
-import * as PersistenceEngine from './persistence/engine';
+import { call, put, select, take } from 'redux-saga/effects'
+import { serverSave } from '../actions'
+import * as PersistenceEngine from './persistence/engine'
 
 export default function* persistenceSaga() {
   while (true) {
-    const action = yield take();
-    const state = yield select();
-    yield put(serverSave.request(action));
-    yield call(PersistenceEngine.save, state, action);
-    yield put(serverSave.success());
+    const action = yield take()
+    const state = yield select()
+    yield put(serverSave.request(action))
+    yield call(PersistenceEngine.save, state, action)
+    yield put(serverSave.success())
   }
 }
 ```
 
 By wrapping the generator body in a `while(true)`, it will be run for all actions, looping through the following instructions:
 
-  1. Retrieve any action (the `take` effect intercepts actions dispatched to the store)
-  2. Get the state from the redux store (the `select` effect does that)
-  3. dispatch a `serverSave.request` action (the `put` effect dispatches an action to the redux store)
-  4. call the `PersistenceEngine.save` function, which is a promise that does a server request, fulfilled when the server responds
-  5. dispatch a `serverSave.success` action
+1. Retrieve any action (the `take` effect intercepts actions dispatched to the store)
+2. Get the state from the redux store (the `select` effect does that)
+3. dispatch a `serverSave.request` action (the `put` effect dispatches an action to the redux store)
+4. call the `PersistenceEngine.save` function, which is a promise that does a server request, fulfilled when the server responds
+5. dispatch a `serverSave.success` action
 
 The `serverSave` actions indicate the app that a request is being made and when it’s fulfilled (it’s your choice to use it or not, depending if you want to show any indication on the UI). One obvious improvement we can make is to add error handling, which `redux-saga` makes it as easy as synchronous code, by using the familiar `try/catch`:
 
 ```js
-import { call, put, select, take } from 'redux-saga/effects';
-import { serverSave } from '../actions';
-import * as PersistenceEngine from './persistence/engine';
+import { call, put, select, take } from 'redux-saga/effects'
+import { serverSave } from '../actions'
+import * as PersistenceEngine from './persistence/engine'
 
 export default function* persistenceSaga() {
   while (true) {
-    const action = yield take();
-    const state = yield select();
-    yield put(serverSave.request(action));
+    const action = yield take()
+    const state = yield select()
+    yield put(serverSave.request(action))
     try {
-      yield call(PersistenceEngine.save, state, action);
-      yield put(serverSave.success());
+      yield call(PersistenceEngine.save, state, action)
+      yield put(serverSave.success())
     } catch (e) {
-      yield put(serverSave.failure());
+      yield put(serverSave.failure())
     }
   }
 }
@@ -82,38 +82,38 @@ This whitelist just uses an Object as a map, to check if the action type exists 
 
 ```js
 // persistence/whitelist.js
-import * as types from '../../constants/ActionTypes';
+import * as types from '../../constants/ActionTypes'
 
 const Whitelist = {
-  [types.CREATE_IMAGE] : true,
-  [types.MOVE_IMAGE] : true
-};
+  [types.CREATE_IMAGE]: true,
+  [types.MOVE_IMAGE]: true,
+}
 
-export default Whitelist;
+export default Whitelist
 ```
 
 ```js
-import { call, put, select, take } from 'redux-saga/effects';
-import { serverSave } from '../actions';
-import * as PersistenceEngine from './persistence/engine';
-import Whitelist from './persistence/whitelist';
+import { call, put, select, take } from 'redux-saga/effects'
+import { serverSave } from '../actions'
+import * as PersistenceEngine from './persistence/engine'
+import Whitelist from './persistence/whitelist'
 
 export default function* persistenceSaga() {
   while (true) {
-    const action = yield take();
+    const action = yield take()
 
     if (!Whitelist[action.type]) {
-      continue;
+      continue
     }
 
-    const state = yield select();
+    const state = yield select()
 
-    yield put(serverSave.request(action));
+    yield put(serverSave.request(action))
     try {
-      yield call(PersistenceEngine.save, state, action);
-      yield put(serverSave.success());
+      yield call(PersistenceEngine.save, state, action)
+      yield put(serverSave.success())
     } catch (e) {
-      yield put(serverSave.failure());
+      yield put(serverSave.failure())
     }
   }
 }
@@ -126,34 +126,34 @@ Remember the requirements that we had? Let’s implement debouncing, as we don�
 We’ll start by implementing a delay promise (copied from redux-saga docs), that, by using generators, will look almost like a `sleep` function (with the advantage of not actually blocking the UI, it will just block the generator execution). The idea is to `yield` that “sleep” promise so the save operation can only be executed later.
 
 ```js
-import { call, put, select, take } from 'redux-saga/effects';
-import { serverSave } from '../actions';
-import * as PersistenceEngine from './persistence/engine';
-import Whitelist from './persistence/whitelist';
+import { call, put, select, take } from 'redux-saga/effects'
+import { serverSave } from '../actions'
+import * as PersistenceEngine from './persistence/engine'
+import Whitelist from './persistence/whitelist'
 
-const DEBOUNCE_TIME = 3000; // debounce time in milliseconds
+const DEBOUNCE_TIME = 3000 // debounce time in milliseconds
 
 function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 export default function* persistenceLayer() {
   while (true) {
-    const action = yield take();
+    const action = yield take()
 
     if (!Whitelist[action.type]) {
-      continue;
+      continue
     }
 
-    const state = yield select();
+    const state = yield select()
 
-    yield call(delay, DEBOUNCE_TIME);
-    yield put(serverSave.request(action));
+    yield call(delay, DEBOUNCE_TIME)
+    yield put(serverSave.request(action))
     try {
-      yield call(PersistenceEngine.save, state, action);
-      yield put(serverSave.success());
+      yield call(PersistenceEngine.save, state, action)
+      yield put(serverSave.success())
     } catch (e) {
-      yield put(serverSave.failure());
+      yield put(serverSave.failure())
     }
   }
 }
@@ -168,32 +168,32 @@ The behavior I’m looking to implement is to only trigger a save operation when
 To implement this, we’ll use the `fork` effect, that runs a task concurrently (`call` waits for the promise to be completed, blocking the saga – we need to keep receiving actions). I like the `fork` analogy, as in `redux-saga` they behave a lot similar to processes forks. Furthermore, `fork`ed processes can be canceled so they’ll work well with our requirements.
 
 ```js
-import { cancel, call, fork, put, select, take } from 'redux-saga/effects';
-import { serverSave } from '../actions';
-import * as PersistenceEngine from './persistence/engine';
-import Whitelist from './persistence/whitelist';
+import { cancel, call, fork, put, select, take } from 'redux-saga/effects'
+import { serverSave } from '../actions'
+import * as PersistenceEngine from './persistence/engine'
+import Whitelist from './persistence/whitelist'
 
-const DEBOUNCE_TIME = 3000; // debounce time in milliseconds
+const DEBOUNCE_TIME = 3000 // debounce time in milliseconds
 
 function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 // let's separate this function for better readability
-function *save(state, action) {
-  yield put(serverSave.request(action));
+function* save(state, action) {
+  yield put(serverSave.request(action))
   try {
-    yield call(PersistenceEngine.save, state, action);
-    yield put(serverSave.success());
+    yield call(PersistenceEngine.save, state, action)
+    yield put(serverSave.success())
   } catch (e) {
-    yield put(serverSave.failure());
+    yield put(serverSave.failure())
   }
 }
 
-function *debounceSave(state) {
+function* debounceSave(state) {
   try {
-    yield call(delay, DEBOUNCE_TIME);
-    yield call(save, state);
+    yield call(delay, DEBOUNCE_TIME)
+    yield call(save, state)
   } catch (e) {
     // empty exception handler because the cancel effect throws an exception
   }
@@ -201,30 +201,30 @@ function *debounceSave(state) {
 
 export default function* persistenceLayer() {
   // if there's already a delay task running, we want to cancel it
-  let debounceTask = null;
+  let debounceTask = null
 
   while (true) {
-    const action = yield take();
+    const action = yield take()
 
     if (!Whitelist[action.type]) {
-      continue;
+      continue
     }
 
-    const state = yield select();
+    const state = yield select()
 
     if (debounceTask) {
-      yield cancel(debounceTask);
+      yield cancel(debounceTask)
     }
 
-    debounceTask = yield fork(debounceSave, state, action);
+    debounceTask = yield fork(debounceSave, state, action)
   }
 }
 ```
 
 We started by separating the `save` and `debounceSave` generator functions, in order to make the code a bit more easy to read. There’s also a `task` concept that was added, which is the result yielded by `fork`:
 
-  * `debounceTask` - this is the yielded value from a `fork`. We need to store it so we can `cancel` the debounce event (check the API for a Task here)
-  * `cancel` - this is another redux-saga effect, that cancels a forked process. Note that canceling a task throws a `SagaCancellationException` to the generator that was forked.
+- `debounceTask` - this is the yielded value from a `fork`. We need to store it so we can `cancel` the debounce event (check the API for a Task here)
+- `cancel` - this is another redux-saga effect, that cancels a forked process. Note that canceling a task throws a `SagaCancellationException` to the generator that was forked.
 
 ### Creating a more robust Whitelist
 
@@ -232,74 +232,78 @@ So let’s continue with our requirements. The `CREATE_IMAGE` action needs to be
 
 ```js
 // persistence/whitelist.js
-import * as types from '../../constants/ActionTypes';
+import * as types from '../../constants/ActionTypes'
 
 export const PersistenceType = {
   IMMEDIATE: 'IMMEDIATE',
-  DEBOUNCE: 'DEBOUNCE'
-};
+  DEBOUNCE: 'DEBOUNCE',
+}
 
 const Whitelist = {
-  [types.CREATE_IMAGE] : PersistenceType.IMMEDIATE,
-  [types.MOVE_IMAGE] : PersistenceType.DEBOUNCE
-};
+  [types.CREATE_IMAGE]: PersistenceType.IMMEDIATE,
+  [types.MOVE_IMAGE]: PersistenceType.DEBOUNCE,
+}
 
 export function getPersistenceType(type) {
-  return Whitelist[type] || null;
+  return Whitelist[type] || null
 }
-import { cancel, call, fork, put, select, take } from 'redux-saga/effects';
-import * as types from '../constants/ActionTypes';
-import { serverSave, signalUnsavedChanges, signalSavedChanges } from '../actions';
-import * as PersistenceEngine from './persistence/engine';
-import { getPersistenceType, PersistenceType } from './persistence/whitelist';
+import { cancel, call, fork, put, select, take } from 'redux-saga/effects'
+import * as types from '../constants/ActionTypes'
+import {
+  serverSave,
+  signalUnsavedChanges,
+  signalSavedChanges,
+} from '../actions'
+import * as PersistenceEngine from './persistence/engine'
+import { getPersistenceType, PersistenceType } from './persistence/whitelist'
 
-const DEBOUNCE_TIME = 3000; // debounce time in milliseconds
+const DEBOUNCE_TIME = 3000 // debounce time in milliseconds
 
 function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 // let's separate this function for better modularity
-function *save(state, action) {
-  yield put(serverSave.request(action));
+function* save(state, action) {
+  yield put(serverSave.request(action))
   try {
-    yield call(PersistenceEngine.save, state, action);
-    yield put(serverSave.success());
+    yield call(PersistenceEngine.save, state, action)
+    yield put(serverSave.success())
   } catch (e) {
-    yield put(serverSave.failure());
+    yield put(serverSave.failure())
   }
 }
 
-function *debounceSave(state) {
+function* debounceSave(state) {
   try {
-    yield call(delay, DEBOUNCE_TIME);
-    yield call(save, state);
+    yield call(delay, DEBOUNCE_TIME)
+    yield call(save, state)
   } catch (e) {
     // empty exception handler because the cancel effect throws an exception
   }
 }
 
 export default function* persistenceSaga() {
-  let debounceTask = null;
+  let debounceTask = null
 
   while (true) {
-    const action = yield take();
-    const type = getPersistenceType(action.type);
+    const action = yield take()
+    const type = getPersistenceType(action.type)
 
     if (!type) {
-      continue;
+      continue
     }
 
-    const state = yield select();
+    const state = yield select()
 
     if (debounceTask) {
-      yield cancel(debounceTask);
+      yield cancel(debounceTask)
     }
 
     if (type === PersistenceType.IMMEDIATE) {
-      yield fork(save, state);	// save immediately
+      yield fork(save, state) // save immediately
     } else if (type === PersistenceType.DEBOUNCE) {
-      debounceTask = yield fork(debounceSave, state);
+      debounceTask = yield fork(debounceSave, state)
     }
   }
 }
@@ -314,33 +318,37 @@ So there’s only one missing requirement: we need to signal the UI when there a
 We will implement the signaling by dispatching a `UNSAVED_CHANGES` action, waiting for the `SERVER_SAVE_SUCCESS` action, and finally dispatching a `SAVED_CHANGES` action. We will also rely on the Task interface to act as a lock, to prevent multiple UNSAVED_CHANGES dispatches.
 
 ```js
-import { cancel, call, fork, put, select, take } from 'redux-saga/effects';
-import * as types from '../constants/ActionTypes';
-import { serverSave, signalUnsavedChanges, signalSavedChanges } from '../actions';
-import * as PersistenceEngine from './persistence/engine';
-import { getPersistenceType, PersistenceType } from './persistence/whitelist';
+import { cancel, call, fork, put, select, take } from 'redux-saga/effects'
+import * as types from '../constants/ActionTypes'
+import {
+  serverSave,
+  signalUnsavedChanges,
+  signalSavedChanges,
+} from '../actions'
+import * as PersistenceEngine from './persistence/engine'
+import { getPersistenceType, PersistenceType } from './persistence/whitelist'
 
-const DEBOUNCE_TIME = 3000; // debounce time in milliseconds
+const DEBOUNCE_TIME = 3000 // debounce time in milliseconds
 
 function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 // let's separate this function for better modularity
-function *save(state, action) {
-  yield put(serverSave.request(action));
+function* save(state, action) {
+  yield put(serverSave.request(action))
   try {
-    yield call(PersistenceEngine.save, state, action);
-    yield put(serverSave.success());
+    yield call(PersistenceEngine.save, state, action)
+    yield put(serverSave.success())
   } catch (e) {
-    yield put(serverSave.failure());
+    yield put(serverSave.failure())
   }
 }
 
-function *debounceSave(state) {
+function* debounceSave(state) {
   try {
-    yield call(delay, DEBOUNCE_TIME);
-    yield call(save, state);
+    yield call(delay, DEBOUNCE_TIME)
+    yield call(save, state)
   } catch (e) {
     // empty exception handler because the cancel effect throws an exception
   }
@@ -348,40 +356,40 @@ function *debounceSave(state) {
 
 // signals to the UI that there are unsaved changes
 export function* signalPersistenceState() {
-  yield put(signalUnsavedChanges());
-  yield take(types.SERVER_SAVE_SUCCESS); // waits for a SERVER_SAVE success to continue
-  yield put(signalSavedChanges());
+  yield put(signalUnsavedChanges())
+  yield take(types.SERVER_SAVE_SUCCESS) // waits for a SERVER_SAVE success to continue
+  yield put(signalSavedChanges())
 }
 
 export default function* persistenceSaga() {
-  let debounceTask = null;
-  let unsavedTask = null;
+  let debounceTask = null
+  let unsavedTask = null
 
   while (true) {
-    const action = yield take();
-    const type = getPersistenceType(action.type);
+    const action = yield take()
+    const type = getPersistenceType(action.type)
 
     if (!type) {
-      continue;
+      continue
     }
 
-    const state = yield select();
+    const state = yield select()
 
     if (debounceTask) {
-      yield cancel(debounceTask);
+      yield cancel(debounceTask)
     }
 
     if (!unsavedTask) {
-      unsavedTask = yield fork(signalPersistenceState);
+      unsavedTask = yield fork(signalPersistenceState)
       unsavedTask.done.then(() => {
-        unsavedTask = null;
-      });
+        unsavedTask = null
+      })
     }
 
     if (type === PersistenceType.IMMEDIATE) {
-      yield fork(save, state);	// save immediately
+      yield fork(save, state) // save immediately
     } else if (type === PersistenceType.DEBOUNCE) {
-      debounceTask = yield fork(debounceSave, state);
+      debounceTask = yield fork(debounceSave, state)
     }
   }
 }
@@ -395,62 +403,67 @@ To better abstract and reuse the Lock functionality, I created a `Lock` class, r
 
 ```js
 // utils/lock.js
-import { cancel, fork } from 'redux-saga/effects';
+import { cancel, fork } from 'redux-saga/effects'
 
 export default class Lock {
   constructor(func) {
-    this.isLocked = false;
-    this.task = null;
-    this.func = func;
+    this.isLocked = false
+    this.task = null
+    this.func = func
   }
 
-  * execute(...args) {
-    if (!this.isLocked) { // do not execute if it's locked
-      this.isLocked = true;
-      this.task = yield fork(this.func, ...args);
+  *execute(...args) {
+    if (!this.isLocked) {
+      // do not execute if it's locked
+      this.isLocked = true
+      this.task = yield fork(this.func, ...args)
       this.task.done.then(() => {
-        this.isLocked = false;
-      });
+        this.isLocked = false
+      })
     }
   }
 
-  * cancel() {
+  *cancel() {
     if (this.task) {
-      yield cancel(this.task);	// reset the delay timeout
+      yield cancel(this.task) // reset the delay timeout
     }
   }
 }
 ```
 
 ```js
-import { call, fork, put, select, take } from 'redux-saga/effects';
-import * as types from '../constants/ActionTypes';
-import { serverSave, signalUnsavedChanges, signalSavedChanges } from '../actions';
-import * as PersistenceEngine from './persistence/engine';
-import { getPersistenceType, PersistenceType } from './persistence/whitelist';
-import Lock from './utils/lock';
+import { call, fork, put, select, take } from 'redux-saga/effects'
+import * as types from '../constants/ActionTypes'
+import {
+  serverSave,
+  signalUnsavedChanges,
+  signalSavedChanges,
+} from '../actions'
+import * as PersistenceEngine from './persistence/engine'
+import { getPersistenceType, PersistenceType } from './persistence/whitelist'
+import Lock from './utils/lock'
 
-const DEBOUNCE_TIME = 3000; // debounce time in milliseconds
+const DEBOUNCE_TIME = 3000 // debounce time in milliseconds
 
 function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 // let's separate this function for better modularity
-function *save(state, action) {
-  yield put(serverSave.request(state));
+function* save(state, action) {
+  yield put(serverSave.request(state))
   try {
-    yield call(PersistenceEngine.save, state, action);
-    yield put(serverSave.success());
+    yield call(PersistenceEngine.save, state, action)
+    yield put(serverSave.success())
   } catch (e) {
-    yield put(serverSave.failure());
+    yield put(serverSave.failure())
   }
 }
 
-function *debounceSave(state) {
+function* debounceSave(state) {
   try {
-    yield call(delay, DEBOUNCE_TIME);
-    yield call(save, state);
+    yield call(delay, DEBOUNCE_TIME)
+    yield call(save, state)
   } catch (e) {
     // empty exception handler because the cancel effect throws an exception
   }
@@ -458,36 +471,36 @@ function *debounceSave(state) {
 
 // signals to the UI that there are unsaved changes
 export function* signalPersistenceState() {
-  yield put(signalUnsavedChanges());
-  yield take(types.SERVER_SAVE_SUCCESS); // waits for a SERVER_SAVE success to continue
-  yield put(signalSavedChanges());
+  yield put(signalUnsavedChanges())
+  yield take(types.SERVER_SAVE_SUCCESS) // waits for a SERVER_SAVE success to continue
+  yield put(signalSavedChanges())
 }
 
 export default function* persistenceSaga() {
-  let debounceLock = new Lock(debounceSave);
-  let unsavedLock = new Lock(signalPersistenceState);
+  let debounceLock = new Lock(debounceSave)
+  let unsavedLock = new Lock(signalPersistenceState)
 
   while (true) {
-    const action = yield take();
-    const type = getPersistenceType(action.type);
+    const action = yield take()
+    const type = getPersistenceType(action.type)
 
     if (!type) {
-      continue;
+      continue
     }
 
-    const state = yield select();
+    const state = yield select()
 
     // each persistent action cancels the debounce timer
-    yield debounceLock.cancel();
+    yield debounceLock.cancel()
 
     // this lock prevents multiple unsaved changes actions from being dispatched
-    yield unsavedLock.execute();
+    yield unsavedLock.execute()
 
     if (type === PersistenceType.IMMEDIATE) {
-      yield fork(save, state);	// save immediately
+      yield fork(save, state) // save immediately
     } else if (type === PersistenceType.DEBOUNCE) {
       // a new debounce timer is created
-      yield debounceLock.execute(state, action);
+      yield debounceLock.execute(state, action)
     }
   }
 }

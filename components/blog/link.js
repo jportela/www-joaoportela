@@ -5,12 +5,12 @@ import BlogMarkdown from './markdown'
 
 import styles from './link.module.css'
 
-export default function BlogLink ({ title, slug, date, excerpt }) {
+export default function BlogLink({ title, slug, date, excerpt }) {
   const pageLocation = `/blog/${slug}`
   return (
     <>
       <h3>
-        <Link href='/blog/[slug]' as={pageLocation}>
+        <Link href="/blog/[slug]" as={pageLocation}>
           <a>{title}</a>
         </Link>
       </h3>
@@ -19,7 +19,7 @@ export default function BlogLink ({ title, slug, date, excerpt }) {
       </p>
       <BlogMarkdown content={excerpt} />
       <p className={styles.readMore}>
-        <Link href='/blog/[slug]' as={pageLocation}>
+        <Link href="/blog/[slug]" as={pageLocation}>
           <a>read more →</a>
         </Link>
       </p>
