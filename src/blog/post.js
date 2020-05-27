@@ -47,6 +47,8 @@ export default class BlogPost {
 
     const dirs = path.normalize(this.location).split(path.sep)
 
-    return path.join('/assets/blog', ...dirs.slice(0, dirs.length - 1))
+    dirs[dirs.length - 1] = path.basename(dirs[dirs.length - 1], '.md') + '/'
+
+    return path.join('/assets/blog', ...dirs.slice(0, dirs.length))
   }
 }
