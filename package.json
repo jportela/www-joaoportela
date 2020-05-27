@@ -12,15 +12,15 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "9.4.2",
-    "date-fns": "2.13.0",
-    "next": "9.4.0",
-    "next-seo": "4.4.0",
+    "date-fns": "2.14.0",
+    "next": "9.4.2",
+    "next-seo": "4.5.0",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@mdx-js/loader": "1.6.1",
-    "@next/mdx": "9.4.0",
+    "@mdx-js/loader": "1.6.4",
+    "@next/mdx": "9.4.2",
     "babel-plugin-inline-react-svg": "1.1.1",
     "copy-webpack-plugin": "6.0.1",
     "eslint": "7.1.0",
@@ -29,9 +29,9 @@
     "gray-matter": "4.0.2",
     "highlight.js": "10.0.3",
     "jest": "26.0.1",
-    "marked": "1.0.0",
+    "marked": "1.1.0",
     "next-optimized-images": "2.6.0",
     "prettier": "2.0.5",
-    "sanitize-html": "1.23.0"
+    "sanitize-html": "1.24.0"
   }
 }

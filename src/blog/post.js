@@ -22,7 +22,7 @@ export default class BlogPost {
 
     if (typeof this.metadataProcessor === 'function') {
       const processedFile = this.metadataProcessor(fileContent)
-      this.metadata = processedFile.data
+      this.metadata = processedFile.metadata
       this.notes = this.metadata.notes
         ? this.contentProcessor(this.metadata.notes)
         : null
