@@ -1,6 +1,6 @@
 ---
 title: Developing React Native components in isolation
-description: How to develop your React Native UI components in isolation in a monorepo setup, with Yarn Workspaces, Storybook and Expo.
+description: How to develop your React Native UI components in isolation in a monorepo setup, with Yarn Workspaces, Storybook, and Expo.
 date: '2020-05-28'
 tags:
   - React Native
@@ -10,9 +10,9 @@ tags:
   - Monorepo
 ---
 
-Separating the UI components from the application logic promotes a better separation of concerns, providing easier testing, maintainability and code reuse.
+Separating the UI components from the application logic promotes a better separation of concerns, providing easier testing, maintainability, and code reuse.
 
-The component library for your applications lets you develop it in isolation, with components tested (both manually and automatically) by using a tool such as [Storybook](https://storybook.js.org/). Storybook allows you to publish a website showcasing the UI library, for developers, designers or other stakeholders to review and iterate on.
+The component library for your applications lets you develop it in isolation, with components tested (both manually and automatically) by using a tool such as [Storybook](https://storybook.js.org/). Storybook allows you to publish a website showcasing the UI library, for developers, designers, or other stakeholders to review and iterate on.
 
 > This component library, then becomes the source of truth for the [Design System](https://www.invisionapp.com/inside-design/guide-to-design-systems/) of your applications.
 
@@ -20,15 +20,15 @@ For multiple apps to reuse the same component library, we need to separate them 
 
 If the flow described above is giving you headaches, there's an alternative: a **[Monorepo](https://danluu.com/monorepo/)** that contains all your packages.
 
-[Yarn Workspaces](https://classic.yarnpkg.com/blog/2017/08/02/introducing-workspaces/) allows your repository to be configured as a monorepo, so it can have multiple independent packages (with their own `package.json`), without having to deal with `npm/yarn link`. Additionally, you can unify your build and testing, **so that you can test your changes across all app/libraries that depend on it**, avoiding surprises when you are bumping version numbers on different apps. And my favourite, it allows for **atomic commits**, which are easier to understand and rollback.
+[Yarn Workspaces](https://classic.yarnpkg.com/blog/2017/08/02/introducing-workspaces/) allows your repository to be configured as a monorepo, so it can have multiple independent packages (with their own `package.json`), without having to deal with `npm/yarn link`. Additionally, you can unify your build and testing, **so that you can test your changes across all apps/libraries that depend on it**, avoiding surprises when you are bumping version numbers on different apps. And my favorite, it allows for **atomic commits**, which are easier to understand and rollback.
 
-This development workflow is really appealing, and has been used with success [by different companies](https://storybook.js.org/use-cases/).
+This development workflow has been used with success [by different companies](https://storybook.js.org/use-cases/).
 
 However, setting this up isn't as easy as it should be. I've been using [Expo](https://expo.io/) for a side project and spent almost a week battling bugs and Webpack configuration issues, trying to get it to work.
 
-In this post I'll walk through the steps and hurdles along the way, until I was able to set up Yarn Workspaces, Storybook and Expo.
+In this post, I'll walk through the steps and hurdles along the way, until I was able to set up Yarn Workspaces, Storybook, and Expo.
 
-> _TL;DR_: check https://github.com/jportela/expo-storybook-workspaces
+> _TL; DR_: check https://github.com/jportela/expo-storybook-workspaces
 
 ### Starting with Yarn Workspaces
 
@@ -73,7 +73,7 @@ Remove the `.git/` directory under `app/`, since you'll want to commit the root 
 rm -rf .git/
 ```
 
-Next we need to make sure the package has a name and a version. Here, I'm creating a [scoped package](https://docs.npmjs.com/using-npm/scope.html) `@my`, which allows me to import all the packages in the monorepo using an instantly recognizable scope. Edit your `packages/app/package.json` to add these two fields:
+Next, we need to make sure the package has a name and version. Here, I'm creating a [scoped package](https://docs.npmjs.com/using-npm/scope.html) `@my`, which allows me to import all the packages in the monorepo using an instantly recognizable scope. Edit your `packages/app/package.json` to add these two fields:
 
 ```js
 // /packages/app/package.json
@@ -83,7 +83,7 @@ Next we need to make sure the package has a name and a version. Here, I'm creati
 
 ### Setting up Expo to play nicely with Yarn Workspaces
 
-By default Expo doesn't work well with Yarn Workspaces. [The following steps](https://github.com/expo/expo/tree/master/packages/expo-yarn-workspaces) are needed for them to work:
+By default, Expo doesn't work well with Yarn Workspaces. [The following steps](https://github.com/expo/expo/tree/master/packages/expo-yarn-workspaces) are needed for them to work:
 
 Install `expo-yarn-workspaces` on your `app/`.
 
@@ -103,7 +103,7 @@ Add the following script (under the `scripts:` property) to `app/package.json`:
 ...
 ```
 
-And change the `main` entrypoint, to one that will be generated by `expo-yarn-workspaces` (you can choose whatever file name/location for this. Here I've chosen to generate it to the `.expo` directory, since it won't be committed to Git):
+And change the `main` entrypoint, to one that will be generated by `expo-yarn-workspaces` (you can choose whatever file name/location for this. Here I've chosen to generate it to the `.expo` directory since it won't be committed to Git):
 
 ```js
 // /packages/app/package.json
@@ -131,7 +131,7 @@ yarn start
 
 ### Setting up the shared UI library
 
-Now that we have an application up and running, we'll setup the package where the shared UI components will live. We'll call it `ui`:
+Now that we have an application up and running, we'll set up the package where the shared UI components will live. We'll call it `ui`:
 
 ```bash
 # /
@@ -183,9 +183,9 @@ export { default as PrimaryButton } from './buttons/primary'
 
 ### Adding Storybook for testing the component
 
-Storybook is the tool that powers the isolated development workflow for UI components. In order to test if the component works as expected, we'll add it as a dev dependency of `@my/ui`.
+Storybook is the tool that powers the isolated development workflow for UI components. To test if the component works as expected, we'll add it as a dev dependency of `@my/ui`.
 
-> Another valid option would be to create another package to contain Storybook, but I personally consider it to be an integral part of developing the `@my/ui` library, so I'm keeping it there.
+> Another valid option would be to create another package to contain Storybook, but I consider it to be an integral part of developing the `@my/ui` library, so I'm keeping it there.
 
 To add Storybook [I followed the official guide for manually installing it](https://storybook.js.org/docs/guides/guide-react/#manual-setup). First add the needed dependencies, as `devDependencies`:
 
@@ -194,7 +194,7 @@ To add Storybook [I followed the official guide for manually installing it](http
 yarn add -D @storybook/react @babel/core babel-loader
 ```
 
-Then add `react`, `react-dom` and `react-native-web`, using the same versions as the app (check `/packages/app/package.json`), in order to avoid issues (using an API that has changed between versions, for example).
+Then add `react`, `react-dom`, and `react-native-web`, using the same versions as the app (check `/packages/app/package.json`), to avoid issues (using an API that has changed between versions, for example).
 
 > Note that we are adding them as `devDependencies` instead of `dependencies`. That's because we don't want them to be included and instantiated when `@my/app` imports the library. Instead, we are only using them for developing the UI library itself.
 
@@ -233,7 +233,7 @@ export const TestButton = () => <PrimaryButton title="Test" />
 
 ### Configure Storybook to support Expo modules
 
-Expo provides a Webpack configuration that makes it easy to import React Native modules in Storybook, through the `@expo/webpack-config` module. First install it:
+Expo provides a Webpack configuration that makes it easy to import React Native modules in Storybook, through the `@expo/webpack-config` module. First, install it:
 
 ```bash
 # /packages/ui
@@ -278,7 +278,7 @@ You should see the following:
 
 ### Import the component in the app
 
-Finally we need to import `@my/ui` in `@my/app`. That's the whole point, since it's where it's going to be used!
+Finally, we need to import `@my/ui` in `@my/app`. That's the whole point since it's where it's going to be used!
 
 Add the package to `@my/app` dependencies:
 
@@ -287,7 +287,7 @@ Add the package to `@my/app` dependencies:
 yarn add @my/ui@1.0.0
 ```
 
-> We need to specify the version number (`@1.0.0`), otherwise Yarn will try to download a `@my/ui` library that exists on the remote NPM registry, instead of the one on your workspace.
+> We need to specify the version number (`@1.0.0`), otherwise, Yarn will try to download a `@my/ui` library that exists on the remote NPM registry, instead of the one on your workspace.
 
 Then import it on `App.tsx`:
 
@@ -369,7 +369,7 @@ And run `yarn install` to make sure it resolves it properly:
 yarn install
 ```
 
-And finally we are able to run the app:
+And finally, we are able to run the app:
 
 ```bash
 # /packages/app
@@ -380,9 +380,9 @@ yarn start
 
 ### Wrapping up
 
-A monorepo setup with Storybook enables a workflow that allows you to create a UI library in isolation, to enforce the Design System of your projects. However, it's not as easy to setup with Expo as it should be.
+A monorepo setup with Storybook enables a workflow that allows you to create a UI library in isolation, to enforce the Design System of your projects. However, it's not as easy to set up with Expo as it should be.
 
-Hopefully this blog post will be useful for helping you setup your own workflow and surfacing what can be improved in Expo.
+Hopefully, this blog post will be useful for helping you set up your workflow and surfacing what can be improved in Expo.
 
 > Check a working example, here: https://github.com/jportela/expo-storybook-workspaces
 
