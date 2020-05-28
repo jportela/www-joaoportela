@@ -5,8 +5,9 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <p>
-        👋 I&apos;m João, a Software Engineer currently living in Porto,
-        Portugal. I&apos;m passionate about building well crafted, user centered
+        👋 I&apos;m João, a Software Engineer currently living in{' '}
+        <a href="https://goo.gl/maps/EHATDAAiERaEpWMm8">Porto, Portugal</a>.
+        I&apos;m passionate about building well crafted, user centered
         experiences.
       </p>
       <p>

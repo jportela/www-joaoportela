@@ -26,7 +26,6 @@ export default class BlogPost {
       this.notes = this.metadata.notes
         ? this.contentProcessor(this.metadata.notes)
         : null
-      this.excerpt = this.contentProcessor(processedFile.excerpt)
       this.content = this.contentProcessor(processedFile.content)
     } else {
       this.content = this.contentProcessor(fileContent)
@@ -35,7 +34,6 @@ export default class BlogPost {
 
   reset() {
     this.content = null
-    this.excerpt = null
     this.notes = null
     this.metadata = {}
   }
@@ -45,10 +43,6 @@ export default class BlogPost {
       return null
     }
 
-    const dirs = path.normalize(this.location).split(path.sep)
-
-    dirs[dirs.length - 1] = path.basename(dirs[dirs.length - 1], '.md') + '/'
-
-    return path.join('/assets/blog', ...dirs.slice(0, dirs.length))
+    return path.join('/assets/blog', path.dirname(this.location), path.sep)
   }
 }

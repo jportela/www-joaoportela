@@ -25,5 +25,5 @@ test('substitutes the location for the asset', () => {
     { loader, contentProcessor: mockContentProcessor },
   )
   const assetPath = post.getAssetLocation()
-  expect(assetPath).toBe('/assets/blog/2020/04/creating-my-personal-blog/')
+  expect(assetPath).toBe('/assets/blog/2020/04/')
 })

@@ -1,9 +1,14 @@
+.header {
+  display: flex;
+  align-items: baseline;
+}
+
 .date {
+  margin-left: 0.5em;
   font-size: 0.9em;
   color: var(--secondary-txt-color);
 }
 
 .readMore {
-  text-align: right;
   font-size: 0.9em;
 }

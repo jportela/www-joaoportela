@@ -17,7 +17,7 @@ const config = {
         new CopyWebpackPlugin({
           patterns: [
             {
-              from: path.join(__dirname, 'blog/**/*.png'),
+              from: path.join(__dirname, 'blog/**/*.(png|jpeg)'),
               to: path.join(__dirname, 'public/assets'),
             },
           ],

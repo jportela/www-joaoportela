@@ -14,7 +14,7 @@ export default function BlogPage({ posts }) {
           title={post.metadata.title}
           slug={post.slug}
           date={post.metadata.date}
-          excerpt={post.excerpt}
+          description={post.metadata.description}
         />
       </li>
     )
@@ -42,7 +42,6 @@ export async function getStaticProps() {
       return {
         slug: post.slug,
         metadata: post.metadata,
-        excerpt: post.excerpt,
       }
     }),
   )

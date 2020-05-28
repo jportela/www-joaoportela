@@ -1,5 +1,6 @@
 ---
 title: Creating my blog using Next.js
+description: Why did I create a blog, and the technical decisions I've made while developing it.
 date: '2020-05-03'
 tags:
   - Next.js

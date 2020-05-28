@@ -10,6 +10,8 @@ import BlogLicense from '../../components/blog/license'
 import BlogHeader from '../../components/blog/header'
 import BlogShare from '../../components/blog/share'
 
+import styles from './page.module.css'
+
 // TODO: move this to an env variable
 const baseUrl = 'https://www.joaoportela.com'
 
@@ -18,12 +20,13 @@ export default function BlogPost({ content, metadata, notes }) {
   const pageAbsoluteUrl = `${baseUrl}${router.asPath}`
 
   return (
-    <article>
+    <article className={styles.container}>
       <NextSeo
         title={metadata.title}
         openGraph={{
           url: pageAbsoluteUrl,
           title: metadata.title,
+          description: metadata.description,
           site_name: "João Portela's Blog",
         }}
         twitter={{

@@ -1,14 +1,8 @@
 import matter from 'gray-matter'
 import format from 'date-fns/format'
 
-function getExcerpt(file) {
-  file.excerpt = file.content.split('\n').find((excerpt) => excerpt)
-}
-
 export default function grayMatterProcessor(rawContent) {
-  const value = matter(rawContent, {
-    excerpt: getExcerpt,
-  })
+  const value = matter(rawContent)
 
   const metadata = value.data
 
@@ -19,6 +13,5 @@ export default function grayMatterProcessor(rawContent) {
   return {
     metadata,
     content: value.content,
-    excerpt: value.excerpt,
   }
 }

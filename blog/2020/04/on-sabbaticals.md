@@ -1,5 +1,6 @@
 ---
 title: On Sabbaticals
+description: I explain the reasons that led me to decide on taking a sabbatical, and what I'm planning on doing for it.
 date: '2020-04-30'
 tags:
   - Life

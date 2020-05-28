@@ -24,9 +24,9 @@
 }
 
 .tag {
-  border: 1px solid var(--);
+  border: 1px solid var(--secondary-header-color);
   border-radius: 2px;
-  background: floralwhite;
+  background: var(--code-bg-color);
   padding: 0.5em;
   line-height: 0.5em;
   margin-right: 0.5em;

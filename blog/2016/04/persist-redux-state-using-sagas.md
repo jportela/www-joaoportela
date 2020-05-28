@@ -1,5 +1,6 @@
 ---
 title: Persist Redux State by using Sagas
+description: As we started having more complex requirements on the persistence mechanism, we replaced redux-storage with a custom saga and liked the result so much that we decided to share it with you.
 date: '2016-04-26'
 tags:
   - React
