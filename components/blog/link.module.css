@@ -1,10 +1,14 @@
 .header {
   display: flex;
   align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.header > h3 {
+  margin-right: 0.5em;
 }
 
 .date {
-  margin-left: 0.5em;
   font-size: 0.9em;
   color: var(--secondary-txt-color);
 }

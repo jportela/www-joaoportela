@@ -6,6 +6,7 @@
 .photo {
   --photo-size: 2.5em;
   width: var(--photo-size);
+  min-width: var(--photo-size);
   height: var(--photo-size);
   border-radius: calc(var(--photo-size) / 2);
   margin-right: 1em;
@@ -13,4 +14,11 @@
 
 .name {
   font-size: 1em;
+  display: block;
+}
+
+@media screen and (max-width: 520px) {
+  .name {
+    display: none;
+  }
 }

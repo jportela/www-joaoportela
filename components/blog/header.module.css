@@ -21,6 +21,7 @@
   padding: 0;
   font-size: 0.7em;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .tag {
@@ -30,4 +31,5 @@
   padding: 0.5em;
   line-height: 0.5em;
   margin-right: 0.5em;
+  margin-bottom: 0.5em;
 }
