@@ -1,13 +1,13 @@
 :root {
   --main-bg-color: white;
   --main-txt-color: #2e2e2e;
-  --main-header-color: #f08a4b;
-  --secondary-header-color: #f08a4b;
-  --link-color: #008cc5;
-  --link-hover-color: #f08a4b;
+  --main-header-color: #d35400;
+  --secondary-header-color: #d35400;
+  --link-color: #007faa;
+  --link-hover-color: #d35400;
   --secondary-txt-color: #686868;
   --code-bg-color: floralwhite;
-  --blockquote-border-color: #f08a4b;
+  --blockquote-border-color: #d35400;
 }
 
 html {
