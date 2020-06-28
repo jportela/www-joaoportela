@@ -8,7 +8,7 @@ tags:
   - Optimization
 ---
 
-Having a small JavaScript bundle size is essential for having better performance when loading your web apps. The less Javascript to download and wait for, the better!
+Having a small JavaScript bundle size is important for having better performance when loading your web apps. The less Javascript to download and wait for, the better!
 
 While developing my blog using Next.js, I periodically (manually) run `yarn build` to make sure the bundle size hasn't increased too much. For my personal website/blog I know this means around `70KBs`.
 
@@ -18,7 +18,7 @@ Last time I ran it, I was surprised to see this:
 
 That's a whole **164KBs, more than double what I expected it to be!**
 
-Since this was happening just for the Blog pages, my intuition told me that the issue was the Markdown parser being included on the client side bundle.
+Since this was happening just for the Blog pages, my intuition told me that the issue was related to the Markdown parser.
 
 It's better to have more information and certainty before jumping into doing a few fixes in the dark, so I decided to start by inspecting the webpack bundle.
 
@@ -42,7 +42,7 @@ module.exports = withBundleAnalyzer({})
 ```
 
 If you run your `build` command with the environment variable `ANALYZE=true`, it will generate
-a visualizer for your `client` and `server` bundles. Since my blog is fully static, I only care about the `client` bundle (the `server` bundle wouldn't be downloaded by the user either way, but it's also good to keep it small, for memory footprint reasons, in case you use server side rendering).
+a visualizer for your `client` and `server` bundles. Since my blog is fully static, I only care about the `client` bundle (the `server` bundle wouldn't be downloaded by the user either way, but it's also good to keep it small, to decrease its memory footprint, in case you use server side rendering).
 
 ```bash
 ANALYZE=true yarn build
@@ -54,13 +54,13 @@ Here's what it looked like:
 
 ### Interpreting the results
 
-Each box shows us a few Node Modules that are contributing to the big bundle size. The bigger the box, the bigger the module.
+Each box shows us a few modules that are contributing to the big bundle size. The bigger the box, the bigger the module.
 
-We can see a bunch of small boxes that are part of Next.js and we can't really do anything about.
+We can see a bunch of boxes that are part of Next.js. Those are small enough to not be a worry, and are essential parts of the client side navigation, so they make sense in our client bundle.
 
 There's a big `react-dom` box which could be replaced by [`Preact`](https://preactjs.com/) (a mostly compatible, smaller alternative to React). I prefer to keep using React, since Next.js has first-class support for it (I don't want to run into any obscure issues due to updates to Preact or Next.js). [There's a good example](https://github.com/vercel/next.js/tree/canary/examples/using-preact) on how to use [`Preact`](https://preactjs.com/) in Next.js, if you are interested in minimizing the bundle size further.
 
-I've found two big modules that I could potentially move out of the client bundle:
+There are two big modules that I could potentially move out of the client bundle:
 
 * sanitize-html
 * marked
@@ -69,7 +69,9 @@ Why were they loaded into the client module in the first place?
 
 These two modules are used by the Markdown parser. When [I first created my blog](/blog/2020/05/creating-my-blog-using-nextjs), I've made the decision to parse Markdown on the client when navigating between pages in the SPA flow.
 
-By implementing it like that, only the Markdown in text format would be downloaded over the network, instead of parsing it on the server, which would bring the rendered HTML over the network. This saves a few bytes when navigating between pages (since it won't have all the HTML tags), but what I didn't consider at the time, **it does it at the expense of a considerable increase in bundle size**, since it will have to bundle `sanitize-html` and `marked`.
+By implementing it that way, only the Markdown in text format would be downloaded, instead of parsing it on the server, which would bring the rendered HTML over the network.
+
+This saves a few bytes when navigating between pages (since it won't have all the HTML tags), but what I didn't consider at the time, **it does so at the expense of a considerable increase in bundle size**, since it will have to bundle `sanitize-html` and `marked`.
 
 ### Moving these modules out of the client
 
@@ -95,7 +97,7 @@ And this processor is only called on the `getStaticProps` method of [my BlogPost
 
 The point to retain is this:
 
-> Consider moving your big modules out of the client into `getStaticProps` or `getServerProps` when appropriate, to keep the client bundle size small.
+> Consider moving your big modules out of the React components, and into `getStaticProps` or `getServerProps` when appropriate, to keep the client bundle size small.
 
 ### Results
 
@@ -111,4 +113,4 @@ And Next.js build script confirmed that the bundle size decreased significantly:
 
 While monitoring and keeping the client bundle size small is generally a good thing (not just for user experience reasons, but also because it will make you think about your dependencies), there might be cases where it makes more sense to keep things on the client side.
 
-> It's up you to to identify opportunities these opportunities, and act on them. By using Next.js and `webpack-bundle-analyzer` you can make sure you're acting with the right information.
+> It's up you to to identify these opportunities, and act on them. By using Next.js and `webpack-bundle-analyzer` you’ll act with the right information, and make the changes that matter to reduce your bundle size effectively.
