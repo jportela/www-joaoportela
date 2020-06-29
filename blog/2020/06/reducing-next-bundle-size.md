@@ -10,34 +10,38 @@ tags:
 
 Having a small JavaScript bundle size is important for having better performance when loading your web apps. The less Javascript to download and wait for, the better!
 
-While developing my blog using Next.js, I periodically (manually) run `yarn build` to make sure the bundle size hasn't increased too much. For my personal website/blog I know this means around `70KBs`.
+While developing my blog using [Next.js](https://nextjs.org), I periodically (manually) run `yarn build` to make sure the bundle size hasn't increased too much. For my website/blog I know this means around `70KBs`.
 
 Last time I ran it, I was surprised to see this:
 
 ![Build Size - Before](reducing-next-bundle-size/bundle-size-before.png "Build Size - Before")
 
-That's a whole **164KBs, more than double what I expected it to be!**
+That's **164KBs, more than double what I expected it to be!**
 
 Since this was happening just for the Blog pages, my intuition told me that the issue was related to the Markdown parser.
 
-It's better to have more information and certainty before jumping into doing a few fixes in the dark, so I decided to start by inspecting the webpack bundle.
+It's better to have more information and certainty before jumping into doing a few fixes in the dark, so I decided to start by inspecting the Webpack bundle.
 
 ### Inspecting the Webpack Bundle
 
-One of the advantages of Next.js is its big ecosystem of plugins and [examples](https://github.com/vercel/next.js/tree/canary/examples). For analyzing the bundle size, there's a plugin [`@next/bundle-analyzer`](https://github.com/vercel/next.js/tree/master/packages/next-bundle-analyzer), that uses [`webpack-bundle-analyzer`](https://github.com/webpack-contrib/webpack-bundle-analyzer) under the hood.
+One of the advantages of [Next.js](https://nextjs.org) is its big ecosystem of plugins and [examples](https://github.com/vercel/next.js/tree/canary/examples). For analyzing the bundle size, there's a plugin [`@next/bundle-analyzer`](https://github.com/vercel/next.js/tree/master/packages/next-bundle-analyzer), that uses [`webpack-bundle-analyzer`](https://github.com/webpack-contrib/webpack-bundle-analyzer) under the hood.
 
-Setting it up is simple, by following their [README](https://github.com/vercel/next.js/blob/master/packages/next-bundle-analyzer/readme.md) or the [`analyze-bundles`](https://github.com/vercel/next.js/tree/canary/examples/analyze-bundles) example:
+Setting it up is simple, by following their [README](https://github.com/vercel/next.js/blob/master/packages/next-bundle-analyzer/readme.md) or the [`analyze-bundles`](https://github.com/vercel/next.js/tree/canary/examples/analyze-bundles) example.
+
+Install `@next/bundle-analyzer`:
 
 ```bash
 yarn add -D @next/bundle-analyzer
 ```
+
+Modify your `next.config.js` to include the plugin in your build process:
 
 ```js
 // next.config.js
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-// replace the {} argument with an existing NextJS config is applicable
+// replace the {} argument with an existing NextJS config, if applicable
 module.exports = withBundleAnalyzer({})
 ```
 
@@ -62,8 +66,8 @@ There's a big `react-dom` box which could be replaced by [`Preact`](https://prea
 
 There are two big modules that I could potentially move out of the client bundle:
 
-* sanitize-html
-* marked
+* `sanitize-html`
+* `marked`
 
 Why were they loaded into the client module in the first place?
 
@@ -95,7 +99,7 @@ The `markdownProcessor` is used as the `contentProcessor` of a `BlogPost`, in [i
 
 And this processor is only called on the `getStaticProps` method of [my BlogPost page](https://github.com/jportela/www-joaoportela/blob/538e0847299ed60944a5520e235d244a63e32903/pages/blog/%5Bslug%5D.js#L82).
 
-The point to retain is this:
+These are the specific steps I took to address the issue. A general guideline to follow is this:
 
 > Consider moving your big modules out of the React components, and into `getStaticProps` or `getServerProps` when appropriate, to keep the client bundle size small.
 
@@ -113,4 +117,4 @@ And Next.js build script confirmed that the bundle size decreased significantly:
 
 While monitoring and keeping the client bundle size small is generally a good thing (not just for user experience reasons, but also because it will make you think about your dependencies), there might be cases where it makes more sense to keep things on the client-side.
 
-> It's up you to to identify these opportunities and act on them. By using Next.js and `webpack-bundle-analyzer` you’ll act with the right information, and make the changes that matter to reduce your bundle size effectively.
+It's up you to to identify these opportunities and act on them. By using Next.js and `webpack-bundle-analyzer` you’ll act with the right information, and make the changes that matter to reduce your bundle size effectively.
