@@ -11,11 +11,7 @@ export default function Home() {
         experiences.
       </p>
       <p>
-        I&apos;m currently{' '}
-        <Link href="/blog/[slug]" as="/blog/on-sabbaticals">
-          <a>enjoying a short sabbatical</a>
-        </Link>
-        , while I&apos;m between jobs. I&apos;ll be developing the web app at{' '}
+        I&apos;m developing the web app at{' '}
         <a href="https://www.fitbod.me">Fitbod</a>, an app I&apos;ve been using{' '}
         for the past year to get healthier and stronger. I&apos;ve previously{' '}
         developed great products at{' '}

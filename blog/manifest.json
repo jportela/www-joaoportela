@@ -1,6 +1,10 @@
 {
   "posts": [
     {
+      "location": "2020/06/reducing-next-bundle-size.md",
+      "slug": "reducing-next-bundle-size"
+    },
+    {
       "location": "2020/05/react-native-isolation-storybook-expo-workspaces.md",
       "slug": "react-native-isolation-storybook-expo-workspaces"
     },
