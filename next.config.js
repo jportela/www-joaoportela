@@ -10,6 +10,9 @@ const withMDX = require('@next/mdx')({
 })
 
 const config = {
+  future: {
+    webpack5: true
+  },
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   webpack(config, { isServer }) {
     if (!isServer) {

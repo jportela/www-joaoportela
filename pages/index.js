@@ -1,5 +1,4 @@
 import styles from './home.module.css'
-import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -12,9 +11,9 @@ export default function Home() {
       </p>
       <p>
         I&apos;m developing the web app at{' '}
-        <a href="https://www.fitbod.me">Fitbod</a>, an app I&apos;ve been using{' '}
-        for the past year to get healthier and stronger. I&apos;ve previously{' '}
-        developed great products at{' '}
+        <a href="https://www.fitbod.me">Fitbod</a>, an app that&apos;s helping me{' '}
+         getting healthier and stronger. I&apos;ve previously{' '}
+        built great products at{' '}
         <a href="https://www.invisionapp.com/">InVisionApp</a>,{' '}
         <a href="https://www.imaginarycloud.com">Imaginary Cloud</a> and{' '}
         <a href="https://www.blip.pt">Blip</a>.

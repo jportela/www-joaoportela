@@ -1,6 +1,10 @@
 {
   "posts": [
     {
+      "location": "2021/04/animate-radix-primitives.md",
+      "slug": "animate-styled-radix-primitives-framer-motion"
+    },
+    {
       "location": "2020/06/reducing-next-bundle-size.md",
       "slug": "reducing-next-bundle-size"
     },

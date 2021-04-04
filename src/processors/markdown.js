@@ -10,9 +10,9 @@ hljs.registerLanguage('bash', bash)
 const renderer = new marked.Renderer()
 
 renderer.code = function (code, infostring) {
-  const language = infostring || 'plaintext'
+  const language = infostring || 'bash'
   return `<pre class="hljs"><code class="language-${language}">${
-    hljs.highlight(language, code).value
+    hljs.highlight(code, { language }).value
   }</code></pre>`
 }
 
