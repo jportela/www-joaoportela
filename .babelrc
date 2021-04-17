@@ -1,4 +1,9 @@
 {
   "presets": ["next/babel"],
-  "plugins": ["inline-react-svg"]
+  "plugins": ["inline-react-svg", ["prismjs", {
+    "languages": ["javascript", "bash"],
+    "plugins": ["line-numbers"],
+    "theme": "tomorrow",
+    "css": true
+}]]
 }

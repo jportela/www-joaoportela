@@ -8,6 +8,7 @@
   --secondary-txt-color: #686868;
   --code-bg-color: floralwhite;
   --blockquote-border-color: #d35400;
+  --code-highlight-bg-color: #1D1F21;
 }
 
 html {
@@ -70,6 +71,16 @@ img {
 code {
   background: var(--code-bg-color);
   padding: 0.2em;
+  font-weight: bold;
+  color: var(--main-header-color);
+}
+
+a code {
+  color: var(--link-color);
+}
+
+a:hover code {
+  color: var(--link-hover-color);
 }
 
 figure {
@@ -77,14 +88,13 @@ figure {
   font-size: 0.9em;
 }
 
-.hljs {
+.highlight {
   line-height: 1.5em;
   padding: 1em;
-  font-size: 1.1em;
-}
-
-.hljs code {
-  background: none;
+  font-size: 0.9em;
+  border-radius: 5px;
+  background-color: var(--code-highlight-bg-color);
+  overflow-x: scroll;
 }
 
 .container {

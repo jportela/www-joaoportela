@@ -1,18 +1,18 @@
 import marked from 'marked'
 import sanitize from 'sanitize-html'
-import hljs from 'highlight.js/lib/core'
-import javascript from 'highlight.js/lib/languages/javascript'
-import bash from 'highlight.js/lib/languages/bash'
+import Prism from 'prismjs'
+const loadLanguages = require('prismjs/components/index');
 
-hljs.registerLanguage('javascript', javascript)
-hljs.registerLanguage('bash', bash)
+loadLanguages(['bash', 'jsx'])
+
+const SUPPORTED_LANGUAGES = ['javascript', 'bash', 'jsx', 'js']
 
 const renderer = new marked.Renderer()
 
 renderer.code = function (code, infostring) {
-  const language = infostring || 'bash'
-  return `<pre class="hljs"><code class="language-${language}">${
-    hljs.highlight(code, { language }).value
+  const language = SUPPORTED_LANGUAGES.includes(infostring) ? infostring : null
+  return `<pre class="highlight"><code class="language-${language}">${
+    language ? Prism.highlight(code, Prism.languages[language], language) : code
   }</code></pre>`
 }
 

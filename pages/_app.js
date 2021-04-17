@@ -6,7 +6,7 @@ import Navigation from '../components/navigation'
 import Footer from '../components/footer'
 import Main from '../components/main'
 
-import 'highlight.js/styles/night-owl.css'
+import 'prismjs/themes/prism-tomorrow.css';
 import '../styles/global.css'
 
 export default function MyApp({ Component, pageProps }) {
