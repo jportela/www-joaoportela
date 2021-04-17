@@ -19,9 +19,9 @@ Modern web applications are built upon a set of UI patterns that are not fully i
 
 This guide explains how to use Radix Primitives, along with `styled-components` and `framer-motion`, to build a simple Dropdown, with an animation when opening and closing it, so that you can see an example of how these three libraries can work together.
 
-## Building the initial Dropdown
+### Building the initial Dropdown
 
-We start with a simple example, just using `@radix-ui/react-dropdown-menu` (the Radix Primitive for a Dropdown Menu), without any styles or animations. This example has been mostly copied over from the [Radix Primitives documentation](https://radix-ui.com/primitives/docs/components/dropdown-menu), which I suggest reading through if you are looking for more customization options from Radix UI, or what each Primitive does.
+We start with a simple example, just using `@radix-ui/react-dropdown-menu` (the Radix Primitive for a Dropdown Menu), without any styles or animations. This example has been mostly copied over from the [Radix Primitives documentation](https://radix-ui.com/primitives/docs/components/dropdown-menu), which I suggest reading if you are looking for more customization options from Radix UI, or what each Primitive does.
 
 ```bash
 yarn add @radix-ui/react-dropdown-menu # adds the Dropdown Menu package from Radix Primitives
@@ -48,7 +48,7 @@ You can see the result in [radix-motion.joaoportela.com](https://radix-motion.jo
 
 > While it seems like a simple component, upon closer inspection you'll notice the [WAI-ARIA](https://www.w3.org/WAI/standards-guidelines/aria/) attributes in the DOM, and the keyboard interaction, which adds the accessibility benefits, without the complexity of implementing it by yourself.
 
-## Adding styling to the dropdown
+### Adding styling to the dropdown
 
 One of the advantages of Radix Primitives is that they are _unstyled_. This makes it easy to add our own styles on top of them. Let's use `styled-components` to make the Dropdown our own:
 
@@ -115,7 +115,7 @@ You can see the result in [radix-motion.joaoportela.com](https://radix-motion.jo
 
 The button and dropdown gets more personality, but adding animations will really make it stand out.
 
-## Adding animation using framer-motion
+### Adding animation using framer-motion
 
 > If you are not familiar with `framer-motion` I recommend [reading through the official documentation](https://www.framer.com/api/motion) and also the excellent free mini-course from [Sid](https://twitter.com/siddharthkp), at [interactive-react.com](https://interactive-react.com/).
 
@@ -158,7 +158,7 @@ export function MotionMenuDropdown() {
 }
 ```
 
-> **The most important point to get all three libraries working properly, is to use `forwardedAs` on your Styled Component, instead of `as`.**
+> The most important point of this article: to get all three libraries working properly, use `forwardedAs` on your Styled Component, instead of `as`.
 
 By using [`forwardedAs`](https://styled-components.com/docs/api#forwardedas-prop), `styled-components` will make sure the `motion.div` gets forwarded all the way to the Radix Primitive (in this case, `Menu.Content`), instead of stopping on the Styled Component:
 
@@ -176,7 +176,7 @@ You can see the result in [radix-motion.joaoportela.com](https://radix-motion.jo
 
 We now have a satisfying animation when the Dropdown opens, but it closes instantly. We want to mirror the animation when it closes, so we need to add an exit animation.
 
-## Adding exit animations
+### Adding exit animations
 
 To add exit animations we need to add the [`<AnimatePresence>`](https://www.framer.com/api/motion/animate-presence/) component from `framer-motion`, and take control of the state of the Dropdown, so we can render it or not, depending on whether it is opened or closed.
 
@@ -229,6 +229,6 @@ export function FinalMenuDropdown() {
 
 You can see the result in [radix-motion.joaoportela.com](https://radix-motion.joaoportela.com), under **Menu Dropdown (Final)**.
 
-## Wrapping up
+### Wrapping up
 
 > All the code is available at https://github.com/jportela/radix-primitives-styled-motion-example, set up as a [Next.js](https://www.nextjs.org/) app.
